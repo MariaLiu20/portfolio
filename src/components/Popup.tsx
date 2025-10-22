@@ -1,4 +1,5 @@
 import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
+import "xp.css/dist/XP.css";
 import "./popup.css";
 
 interface DraggablePopupProps {
@@ -65,18 +66,22 @@ const Popup: React.FC<DraggablePopupProps> = ({
       }}
       onClick={onBringToFront}
     >
+      <div style={{ width: 300 }} className="window"></div>
       <div
-        className="popup"
+        className="popup xp-window"
         ref={popupRef}
         style={{
           transform: `translate(${position.x}px, ${position.y}px)`,
           zIndex: zIndex + 1,
         }}
       >
-        <div className="popup-header" onMouseDown={onMouseDown}>
-          <button className="popup-close" onClick={onClose}>
-            Close
-          </button>
+        <div className="popup-header title-bar" onMouseDown={onMouseDown}>
+          <div className="title-bar-text">Counter</div>
+          <div className="title-bar-controls">
+            <button aria-label="Minimize" />
+            <button aria-label="Maximize" />
+            <button aria-label="Close" onClick={onClose} />
+          </div>
         </div>
         <div className="popup-content">{children}</div>
       </div>
