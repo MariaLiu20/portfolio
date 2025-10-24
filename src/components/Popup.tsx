@@ -56,7 +56,6 @@ const Popup: React.FC<DraggablePopupProps> = ({
 
   return (
     <div
-      className="popup-wrapper"
       style={{
         position: "absolute",
         top: 50,

@@ -1,27 +1,5 @@
-.popup-wrapper {
-  position: absolute;
-}
-
-.popup {
-  width: 300px;
-  background: white;
-  border: 2px solid #aaa;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-  cursor: default;
-}
-
 .popup-header {
   cursor: move;
-}
-
-.popup-close {
-  background: white;
-  color: #0077ff;
-  border: none;
-  padding: 4px 8px;
-  border-radius: 4px;
-  cursor: pointer;
 }
 
 .popup-content {
