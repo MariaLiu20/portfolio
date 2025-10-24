@@ -40,6 +40,7 @@ const App = () => {
 
   return (
     <div className="app-container">
+      <div className="background" />
       <h1>Multiple Draggable Popups</h1>
 
       <div className="buttons">
