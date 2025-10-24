@@ -66,9 +66,8 @@ const Popup: React.FC<DraggablePopupProps> = ({
       }}
       onClick={onBringToFront}
     >
-      <div style={{ width: 300 }} className="window"></div>
       <div
-        className="popup xp-window"
+        className="window"
         ref={popupRef}
         style={{
           transform: `translate(${position.x}px, ${position.y}px)`,
@@ -76,14 +75,14 @@ const Popup: React.FC<DraggablePopupProps> = ({
         }}
       >
         <div className="popup-header title-bar" onMouseDown={onMouseDown}>
-          <div className="title-bar-text">Counter</div>
+          <div className="title-bar-text">Resume</div>
           <div className="title-bar-controls">
             <button aria-label="Minimize" />
             <button aria-label="Maximize" />
             <button aria-label="Close" onClick={onClose} />
           </div>
         </div>
-        <div className="popup-content">{children}</div>
+        <div className="window-body">{children}</div>
       </div>
     </div>
   );

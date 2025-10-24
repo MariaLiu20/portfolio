@@ -12,12 +12,7 @@
 }
 
 .popup-header {
-  background: #0077ff;
-  color: white;
-  padding: 8px;
   cursor: move;
-  display: flex;
-  justify-content: flex-end;
 }
 
 .popup-close {
