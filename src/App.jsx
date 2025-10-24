@@ -5,10 +5,10 @@ const App = () => {
   
 
   return (
-    <div className="app-container">
+    <>
       <div className="background" />
       <DesktopIcons/>
-    </div>
+    </>
   );
 };
 
