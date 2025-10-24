@@ -5,9 +5,9 @@ import "../App.css";
 const DesktopIcons = () => {
   // Track all popups and whether they are open
   const [popups, setPopups] = useState([
-    { id: 1, title: "Resume", isOpen: false },
-    { id: 2, title: "Popup 2", isOpen: false },
-    { id: 3, title: "Popup 3", isOpen: false },
+    { id: 1, isOpen: false },
+    { id: 2, isOpen: false },
+    { id: 3, isOpen: false },
   ]);
 
   // Manage z-index values for each popup
@@ -40,8 +40,7 @@ const DesktopIcons = () => {
 
   return (
     <>
-      {" "}
-      <div className="buttons">
+      <div className="buttons centered-container">
         {popups.map((popup) => (
           <button key={popup.id} onClick={() => openPopup(popup.id)}>
             Open {popup.title}
@@ -50,14 +49,16 @@ const DesktopIcons = () => {
       </div>
       <Popup
         key="Resume"
+        title="Resume"
         isOpen={popups[0].isOpen}
         onClose={() => closePopup(popups[0].id)}
         zIndex={zIndexes[popups[0].id] || 100}
         onBringToFront={() => bringToFront(popups[0].id)}
       >
-        <h2>{popups[0].title}</h2>
-        <p>This is the content for {popups[0].title}.</p>
-        <p>You can drag and stack multiple popups!</p>
+        <iframe
+          src="public\resume 2025.pdf#toolbar=0"
+          style={{ width: "600px", height: "500px" }}
+        ></iframe>
       </Popup>
       <Popup
         key={2}
@@ -66,8 +67,7 @@ const DesktopIcons = () => {
         zIndex={zIndexes[popups[1].id] || 100}
         onBringToFront={() => bringToFront(popups[1].id)}
       >
-        <h2>{popups[1].title}</h2>
-        <p>This is the content for {popups[1].title}.</p>
+        <p>This is the content for .</p>
         <p>You can drag and stack multiple popups!</p>
       </Popup>
       <Popup
@@ -77,8 +77,7 @@ const DesktopIcons = () => {
         zIndex={zIndexes[popups[2].id] || 100}
         onBringToFront={() => bringToFront(popups[2].id)}
       >
-        <h2>{popups[2].title}</h2>
-        <p>This is the content for {popups[2].title}.</p>
+        <p>This is the content for .</p>
         <p>You can drag and stack multiple popups!</p>
       </Popup>
     </>

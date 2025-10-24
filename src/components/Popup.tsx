@@ -3,6 +3,7 @@ import "xp.css/dist/XP.css";
 import "./popup.css";
 
 interface DraggablePopupProps {
+  title?: string;
   isOpen: boolean;
   onClose: () => void;
   children: ReactNode;
@@ -11,6 +12,7 @@ interface DraggablePopupProps {
 }
 
 const Popup: React.FC<DraggablePopupProps> = ({
+  title,
   isOpen,
   onClose,
   children,
@@ -58,8 +60,8 @@ const Popup: React.FC<DraggablePopupProps> = ({
     <div
       style={{
         position: "absolute",
-        top: 50,
-        left: 50,
+        top: 100,
+        left: 100,
         zIndex,
         pointerEvents: "auto",
         transform: `translate(${position.x}px, ${position.y}px)`,
@@ -74,7 +76,7 @@ const Popup: React.FC<DraggablePopupProps> = ({
         }}
       >
         <div className="popup-header title-bar" onMouseDown={onMouseDown}>
-          <div className="title-bar-text">Resume</div>
+          <div className="title-bar-text">{title}</div>
           <div className="title-bar-controls">
             <button aria-label="Minimize" />
             <button aria-label="Maximize" />
