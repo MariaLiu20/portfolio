@@ -5,9 +5,9 @@ import "../App.css";
 const DesktopIcons = () => {
   // Track all popups and whether they are open
   const [popups, setPopups] = useState([
-    { id: 1, isOpen: false },
-    { id: 2, isOpen: false },
-    { id: 3, isOpen: false },
+    { id: 1, title: "Resume", isOpen: false },
+    { id: 2, title: "Work", isOpen: false },
+    { id: 3, title: "Contact", isOpen: false },
   ]);
 
   // Manage z-index values for each popup
@@ -43,42 +43,44 @@ const DesktopIcons = () => {
       <div className="buttons centered-container">
         {popups.map((popup) => (
           <button key={popup.id} onClick={() => openPopup(popup.id)}>
-            Open {popup.title}
+            {popup.title}
           </button>
         ))}
       </div>
       <Popup
-        key="Resume"
-        title="Resume"
+        title={popups[0].title}
         isOpen={popups[0].isOpen}
         onClose={() => closePopup(popups[0].id)}
         zIndex={zIndexes[popups[0].id] || 100}
         onBringToFront={() => bringToFront(popups[0].id)}
       >
         <iframe
-          src="public\resume 2025.pdf#toolbar=0"
+          src="public\resume2025.pdf#toolbar=0"
           style={{ width: "600px", height: "500px" }}
         ></iframe>
       </Popup>
       <Popup
-        key={2}
+        title={popups[1].title}
         isOpen={popups[1].isOpen}
         onClose={() => closePopup(popups[1].id)}
         zIndex={zIndexes[popups[1].id] || 100}
         onBringToFront={() => bringToFront(popups[1].id)}
       >
-        <p>This is the content for .</p>
+        <p> https://github.com/MariaLiu20 </p>
         <p>You can drag and stack multiple popups!</p>
       </Popup>
       <Popup
-        key={3}
+        title={popups[2].title}
         isOpen={popups[2].isOpen}
         onClose={() => closePopup(popups[2].id)}
         zIndex={zIndexes[popups[2].id] || 100}
         onBringToFront={() => bringToFront(popups[2].id)}
       >
-        <p>This is the content for .</p>
-        <p>You can drag and stack multiple popups!</p>
+        <p>Message me at marialiu0220@gmail.com</p>
+        <p>or hit the link below!</p>
+        <a href="https://www.linkedin.com/">
+          <img src="public\mailIcon.png"></img>
+        </a>
       </Popup>
     </>
   );
