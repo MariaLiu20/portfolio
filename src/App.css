@@ -60,9 +60,13 @@
   overflow: hidden; /* Hides any overflow if the image is larger than the screen */
 }
 
- .centered-container {
-      position: fixed; /* or absolute */
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
+.centered-container {
+  position: fixed; /* or absolute */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.button {
+  opacity: 0.0;
+}
