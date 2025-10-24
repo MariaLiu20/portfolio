@@ -59,10 +59,11 @@ const Popup: React.FC<DraggablePopupProps> = ({
       className="popup-wrapper"
       style={{
         position: "absolute",
-        top: 0,
-        left: 0,
+        top: 50,
+        left: 50,
         zIndex,
         pointerEvents: "auto",
+        transform: `translate(${position.x}px, ${position.y}px)`,
       }}
       onClick={onBringToFront}
     >
@@ -70,7 +71,6 @@ const Popup: React.FC<DraggablePopupProps> = ({
         className="window"
         ref={popupRef}
         style={{
-          transform: `translate(${position.x}px, ${position.y}px)`,
           zIndex: zIndex + 1,
         }}
       >
