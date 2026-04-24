@@ -43,7 +43,7 @@
 }
 
 .background {
-  background-image: url("../public/xpDesktop.webp");
+  background-image: url("/xpDesktop.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
