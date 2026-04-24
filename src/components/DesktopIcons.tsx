@@ -56,7 +56,7 @@ const DesktopIcons = () => {
         onBringToFront={() => bringToFront(popups[0].id)}
       >
         <iframe
-          src="public\resume 2025.pdf#toolbar=0"
+          src="/Resume 2026.docx.pdf#toolbar=0"
           style={{ width: "600px", height: "500px" }}
         ></iframe>
       </Popup>
