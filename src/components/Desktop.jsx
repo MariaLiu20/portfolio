@@ -2,6 +2,7 @@ import "./Desktop.css";
 import { useState } from "react";
 import { Popup } from "./Popup";
 import { Icon } from "./Icon";
+import { Mp3Player } from "./mp3Player";
 
 export const Desktop = () => {
   // Track all popups
@@ -39,6 +40,7 @@ export const Desktop = () => {
 
   return (
     <>
+      <Mp3Player />
       <Icon
         title={popups[0].title}
         imageUrl="docIcon.png"
