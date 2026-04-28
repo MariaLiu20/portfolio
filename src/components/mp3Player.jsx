@@ -91,13 +91,6 @@ export const Mp3Player = () => {
     }
   };
 
-  const pauseTrack = () => {
-    if (currTrack.current) {
-      currTrack.current.pause();
-      setIsPlaying(false);
-    }
-  };
-
   const playPause = () => {
      if (currTrack.current && currTrack.current.paused) {
       currTrack.current.play();
@@ -109,14 +102,14 @@ export const Mp3Player = () => {
   };
 
   const nextTrack = () => {
-    let newIndex = trackIndex < playlist.length - 1 ? trackIndex + 1 : 0;
+    const newIndex = trackIndex < playlist.length - 1 ? trackIndex + 1 : 0;
     setTrackIndex(newIndex);
     loadTrack(newIndex);
     playTrack();
   };
 
   const prevTrack = () => {
-    let newIndex = trackIndex > 0 ? trackIndex - 1 : playlist.length - 1;
+    const newIndex = trackIndex > 0 ? trackIndex - 1 : playlist.length - 1;
     setTrackIndex(newIndex);
     loadTrack(newIndex);
     playTrack();
@@ -143,146 +136,53 @@ export const Mp3Player = () => {
   }, []);
 
   return (
-    <div className="window" id="musicplayer">
-      <div className="popup-header title-bar">
-        <div className="title-bar-text">
-          <img
-            src="https://loveberry.nekoweb.org/assets/musicplayer/player-icon.png"
-            alt=""
-            height="14px"
-            width="14px"
-          />{" "}
-          CD Player
-        </div>
-        <div className="title-bar-controls">
-          <button className="window-button minimize" aria-label="Minimize" />
-          <button className="window-button maximize" aria-label="Maximize" />
-          <button className="window-button close" aria-label="Close" />
-        </div>
+    <div className="player-flex">
+      <div className="player-icon-holder">
+        <div className="player-icon"></div>
       </div>
-      <div className="window-body">
-        <div className="player-flex">
-          <div className="player-icon-holder">
-            <div className="player-icon"></div>
+      <div className="player-main">
+        <select
+          className="track-select"
+          onChange={handleTrackChange}
+          value={trackIndex}
+        >
+          {playlist.map((track, index) => (
+            <option key={index} value={index}>
+              {track.name} — {track.artist}
+            </option>
+          ))}
+        </select>
+        <div className="controls">
+          <div className="seeking">
+            <div className="current-time">{currentTime}</div>
+            <input
+              type="range"
+              min="1"
+              max="100"
+              value={seekValue}
+              className="seek_slider"
+              onChange={seekTo}
+            />
+            <div className="total-duration">{duration}</div>
           </div>
-          <div className="player-main">
-            <select
-              className="track-select"
-              onChange={handleTrackChange}
-              value={trackIndex}
+
+          <div className="player-buttons">
+            <button className="window-button prev-track" onClick={prevTrack}>
+              ⏮
+            </button>
+            <button
+              className="window-button playpause-track"
+              onClick={playPause}
             >
-              {playlist.map((track, index) => (
-                <option key={index} value={index}>
-                  {track.name} — {track.artist}
-                </option>
-              ))}
-            </select>
-            <div className="controls">
-              <div className="seeking">
-                <div className="current-time">{currentTime}</div>
-
-                <input
-                  type="range"
-                  min="1"
-                  max="100"
-                  value={seekValue}
-                  className="seek_slider"
-                  onChange={seekTo}
-                />
-
-                <div className="total-duration">{duration}</div>
-              </div>
-
-              <div className="player-buttons">
-                <button
-                  className="window-button prev-track"
-                  onClick={prevTrack}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-skip-back-icon lucide-skip-back"
-                  >
-                    <path d="M17.971 4.285A2 2 0 0 1 21 6v12a2 2 0 0 1-3.029 1.715l-9.997-5.998a2 2 0 0 1-.003-3.432z" />
-                    <path d="M3 20V4" />
-                  </svg>
-                </button>
-
-                <button
-                  className="window-button playpause-track"
-                  onClick={playPause}
-                >
-                  {isPlaying ? (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="lucide lucide-pause-icon"
-                    >
-                      <rect x="14" y="3" width="5" height="18" rx="1" />
-                      <rect x="5" y="3" width="5" height="18" rx="1" />
-                    </svg>
-                  ) : (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="lucide lucide-play-icon"
-                    >
-                      <path
-                        d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003
-    3.458l-12 7A2 2 0 0 1 5 19z"
-                      />
-                    </svg>
-                  )}
-                </button>
-
-                <button
-                  className="window-button next-track"
-                  onClick={nextTrack}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-skip-forward-icon lucide-skip-forward"
-                  >
-                    <path d="M21 4v16" />
-                    <path d="M6.029 4.285A2 2 0 0 0 3 6v12a2 2 0 0 0 3.029 1.715l9.997-5.998a2 2 0 0 0 .003-3.432z" />
-                  </svg>
-                </button>
-              </div>
-            </div>
+              {isPlaying ? "⏸" : "▶"}
+            </button>
+            <button className="window-button next-track" onClick={nextTrack}>
+              ⏭
+            </button>
           </div>
         </div>
       </div>
-
-      <audio id="music" src="" ref={currTrack}></audio>
+      <audio id="music" ref={currTrack}></audio>
     </div>
   );
 };

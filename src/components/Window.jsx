@@ -1,6 +1,6 @@
 import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
 
-export const Popup = ({
+export const Window = ({
   title,
   isOpen,
   onClose,
@@ -12,9 +12,9 @@ export const Popup = ({
 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [position, setPosition] = useState({ x, y });
-  const startPos = useRef({ x: 0, y: 0 });
+  const startPos = useRef({ x, y });
 
-  const popupRef = useRef(null);
+  const windowRef = useRef(null);
 
   const onMouseMove = useCallback(
     (e) => {
@@ -61,13 +61,13 @@ export const Popup = ({
     >
       <div
         className="window"
-        ref={popupRef}
+        ref={windowRef}
         style={{
           zIndex: zIndex + 1,
         }}
       >
         <div className="popup-header title-bar" onMouseDown={onMouseDown}>
-          <div className="title-bar-text">{title}</div>
+          <div className="title-bar-text"><img src="https://loveberry.nekoweb.org/assets/musicplayer/player-icon.png" alt="" height="14px" width="14px"/> {title}</div>
           <div className="title-bar-controls">
             <button aria-label="Minimize" />
             <button aria-label="Maximize" />
