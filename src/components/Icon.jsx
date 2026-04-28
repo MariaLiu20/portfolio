@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const iconStyle = {
-  display: "inline-flex",
+  position: "absolute",
   flexDirection: "column",
   alignItems: "center",
   width: 64,
@@ -22,13 +22,15 @@ export const Icon = ({
   imageUrl,
   onActivate,
   onKeyActivate,
+  x,
+  y
 }) => {
   const dragThreshold = 5;
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({ x, y });
   const [isDragging, setIsDragging] = useState(false);
   const [hasDragged, setHasDragged] = useState(false);
-  const startPosRef = useRef({ x: 0, y: 0 });
-  const dragStartPos = useRef({ x: 0, y: 0 });
+  const startPosRef = useRef({ x, y });
+  const dragStartPos = useRef({ x, y });
 
   const onMouseMove = useCallback(
     (e) => {
