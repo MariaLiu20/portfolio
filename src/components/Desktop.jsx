@@ -37,32 +37,22 @@ export const Desktop = () => {
     }));
   };
 
-  const handleKeyActivate = (e, id) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      openPopup(id);
-    }
-  };
-
   return (
     <>
       <Icon
         title={popups[0].title}
         imageUrl="docIcon.png"
         onActivate={() => openPopup(popups[0].id)}
-        onKeyActivate={(e) => handleKeyActivate(e, popups[0].id)}
       />
       <Icon
         title={popups[1].title}
         imageUrl="docIcon.png"
         onActivate={() => openPopup(popups[1].id)}
-        onKeyActivate={(e) => handleKeyActivate(e, popups[1].id)}
       />
       <Icon
         title={popups[2].title}
         imageUrl="docIcon.png"
         onActivate={() => openPopup(popups[2].id)}
-        onKeyActivate={(e) => handleKeyActivate(e, popups[2].id)}
       />
 
       <Popup
@@ -76,7 +66,7 @@ export const Desktop = () => {
       >
         <iframe
           src="Resume%202026.docx.pdf#toolbar=0"
-          style={{ width: "600px", height: "500px" }}
+          style={{ width: "550px", height: "690px" }}
         ></iframe>
       </Popup>
 
@@ -90,7 +80,13 @@ export const Desktop = () => {
         y={200}
       >
         <p> All my projects </p>
-        <p> https://github.com/MariaLiu20 </p>
+        <a
+          href="https://github.com/MariaLiu20"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <p> https://github.com/MariaLiu20 </p>
+        </a>
       </Popup>
 
       <Popup
@@ -104,8 +100,12 @@ export const Desktop = () => {
       >
         <p> Message me at marialiu0220@gmail.com </p>
         <p> or hit the link below! </p>
-        <a href="https://www.linkedin.com/">
-          <img src="mailIcon.png" alt="linkedin" />
+        <a
+          href="https://www.linkedin.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src="mailIcon.png" alt="LinkedIn" />
         </a>
       </Popup>
     </>
