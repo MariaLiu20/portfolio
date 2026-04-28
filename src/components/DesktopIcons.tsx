@@ -2,12 +2,29 @@ import { useState } from "react";
 import Popup from "./Popup";
 import "../App.css";
 
+const iconStyle: React.CSSProperties = {
+  display: "inline-flex",
+  flexDirection: "column",
+  alignItems: "center",
+  width: 64,
+  textDecoration: "none",
+  color: "inherit",
+};
+
+const iconImageStyle: React.CSSProperties = {
+  width: 70,
+  height: 70,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  borderRadius: 4,
+};
+
 const DesktopIcons = () => {
   // Track all popups and whether they are open
   const [popups, setPopups] = useState([
-    { id: 1, isOpen: false },
-    { id: 2, isOpen: false },
-    { id: 3, isOpen: false },
+    { id: 1, title: "Resume", isOpen: false },
+    { id: 2, title: "Work", isOpen: false },
+    { id: 3, title: "Contact", isOpen: false },
   ]);
 
   // Manage z-index values for each popup
@@ -17,7 +34,7 @@ const DesktopIcons = () => {
   // Open popup
   const openPopup = (id: number) => {
     setPopups((prev) =>
-      prev.map((p) => (p.id === id ? { ...p, isOpen: true } : p))
+      prev.map((p) => (p.id === id ? { ...p, isOpen: true } : p)),
     );
     bringToFront(id);
   };
@@ -25,7 +42,7 @@ const DesktopIcons = () => {
   // Close popup
   const closePopup = (id: number) => {
     setPopups((prev) =>
-      prev.map((p) => (p.id === id ? { ...p, isOpen: false } : p))
+      prev.map((p) => (p.id === id ? { ...p, isOpen: false } : p)),
     );
   };
 
@@ -38,49 +55,120 @@ const DesktopIcons = () => {
     }));
   };
 
+  const handleKeyActivate = (e: React.KeyboardEvent, id: number) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      openPopup(id);
+    }
+  };
+
   return (
     <>
-      <div className="buttons centered-container">
-        {popups.map((popup) => (
-          <button key={popup.id} onClick={() => openPopup(popup.id)}>
-            Open {popup.title}
-          </button>
-        ))}
+      <div style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
+        <a
+          className="duration-250 cursor-pointer hover:scale-105 active:scale-90"
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            openPopup(popups[0].id);
+          }}
+          onKeyDown={(e) => handleKeyActivate(e, popups[0].id)}
+          role="button"
+          tabIndex={0}
+          aria-label={popups[0].title}
+          style={iconStyle}
+        >
+          <div
+            style={{
+              ...iconImageStyle,
+              backgroundImage: "url('public/docIcon.png')",
+            }}
+          />
+          <span style={{ marginTop: 6, fontSize: 12 }}>{popups[0].title}</span>
+        </a>
+        <a
+          className="duration-250 cursor-pointer hover:scale-105 active:scale-90"
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            openPopup(popups[1].id);
+          }}
+          onKeyDown={(e) => handleKeyActivate(e, popups[1].id)}
+          role="button"
+          tabIndex={0}
+          aria-label={popups[1].title}
+          style={iconStyle}
+        >
+          <div
+            style={{
+              ...iconImageStyle,
+              backgroundImage: "url('public/docIcon.png')",
+            }}
+          />
+          <span style={{ marginTop: 6, fontSize: 12 }}>{popups[1].title}</span>
+        </a>
+        <a
+          className="duration-250 cursor-pointer hover:scale-105 active:scale-90"
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            openPopup(popups[2].id);
+          }}
+          onKeyDown={(e) => handleKeyActivate(e, popups[2].id)}
+          role="button"
+          tabIndex={0}
+          aria-label={popups[2].title}
+          style={iconStyle}
+        >
+          <div
+            style={{
+              ...iconImageStyle,
+              backgroundImage: "url('public/docIcon.png')",
+            }}
+          />
+          <span style={{ marginTop: 6, fontSize: 12 }}>{popups[2].title}</span>
+        </a>
       </div>
+
       <Popup
-        key="Resume"
-        title="Resume"
+        title={popups[0].title}
         isOpen={popups[0].isOpen}
         onClose={() => closePopup(popups[0].id)}
         zIndex={zIndexes[popups[0].id] || 100}
         onBringToFront={() => bringToFront(popups[0].id)}
       >
         <iframe
-          src="/Resume 2026.docx.pdf#toolbar=0"
+          src="public/Resume 2026.docx.pdf#toolbar=0"
           style={{ width: "600px", height: "500px" }}
         ></iframe>
       </Popup>
+
       <Popup
-        key={2}
+        title={popups[1].title}
         isOpen={popups[1].isOpen}
         onClose={() => closePopup(popups[1].id)}
         zIndex={zIndexes[popups[1].id] || 100}
         onBringToFront={() => bringToFront(popups[1].id)}
       >
-        <p>This is the content for .</p>
-        <p>You can drag and stack multiple popups!</p>
+        <p> All my projects </p>
+        <p> https://github.com/MariaLiu20 </p>
       </Popup>
+
       <Popup
-        key={3}
+        title={popups[2].title}
         isOpen={popups[2].isOpen}
         onClose={() => closePopup(popups[2].id)}
         zIndex={zIndexes[popups[2].id] || 100}
         onBringToFront={() => bringToFront(popups[2].id)}
       >
-        <p>This is the content for .</p>
-        <p>You can drag and stack multiple popups!</p>
+        <p> Message me at marialiu0220@gmail.com </p>
+        <p> or hit the link below! </p>
+        <a href="https://www.linkedin.com/">
+          <img src="public/mailIcon.png" alt="linkedin" />
+        </a>
       </Popup>
     </>
   );
 };
+
 export default DesktopIcons;
