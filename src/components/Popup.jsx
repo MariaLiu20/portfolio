@@ -1,5 +1,4 @@
 import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
-import "./popup.css";
 
 export const Popup = ({
   title,
@@ -8,9 +7,11 @@ export const Popup = ({
   children,
   zIndex,
   onBringToFront,
+  x,
+  y
 }) => {
   const [isDragging, setIsDragging] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({ x, y });
   const startPos = useRef({ x: 0, y: 0 });
 
   const popupRef = useRef(null);

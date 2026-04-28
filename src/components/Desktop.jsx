@@ -48,19 +48,19 @@ export const Desktop = () => {
     <>
       <Icon
         title={popups[0].title}
-        imageUrl="public/docIcon.png"
+        imageUrl="docIcon.png"
         onActivate={() => openPopup(popups[0].id)}
         onKeyActivate={(e) => handleKeyActivate(e, popups[0].id)}
       />
       <Icon
         title={popups[1].title}
-        imageUrl="public/docIcon.png"
+        imageUrl="docIcon.png"
         onActivate={() => openPopup(popups[1].id)}
         onKeyActivate={(e) => handleKeyActivate(e, popups[1].id)}
       />
       <Icon
         title={popups[2].title}
-        imageUrl="public/docIcon.png"
+        imageUrl="docIcon.png"
         onActivate={() => openPopup(popups[2].id)}
         onKeyActivate={(e) => handleKeyActivate(e, popups[2].id)}
       />
@@ -71,9 +71,11 @@ export const Desktop = () => {
         onClose={() => closePopup(popups[0].id)}
         zIndex={zIndexes[popups[0].id] || 100}
         onBringToFront={() => bringToFront(popups[0].id)}
+        x={300}
+        y={100}
       >
         <iframe
-          src="public/Resume 2026.docx.pdf#toolbar=0"
+          src="Resume%202026.docx.pdf#toolbar=0"
           style={{ width: "600px", height: "500px" }}
         ></iframe>
       </Popup>
@@ -84,6 +86,8 @@ export const Desktop = () => {
         onClose={() => closePopup(popups[1].id)}
         zIndex={zIndexes[popups[1].id] || 100}
         onBringToFront={() => bringToFront(popups[1].id)}
+        x={400}
+        y={200}
       >
         <p> All my projects </p>
         <p> https://github.com/MariaLiu20 </p>
@@ -95,11 +99,13 @@ export const Desktop = () => {
         onClose={() => closePopup(popups[2].id)}
         zIndex={zIndexes[popups[2].id] || 100}
         onBringToFront={() => bringToFront(popups[2].id)}
+        x={900}
+        y={360}
       >
         <p> Message me at marialiu0220@gmail.com </p>
         <p> or hit the link below! </p>
         <a href="https://www.linkedin.com/">
-          <img src="public/mailIcon.png" alt="linkedin" />
+          <img src="mailIcon.png" alt="linkedin" />
         </a>
       </Popup>
     </>
