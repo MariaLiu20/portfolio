@@ -1,15 +1,7 @@
-import "./App.css";
-import DesktopIcons from "./components/DesktopIcons";
+import { Desktop } from "./components/Desktop";
 
 const App = () => {
-  
-
-  return (
-    <>
-      <div className="background" />
-      <DesktopIcons/>
-    </>
-  );
+  return <Desktop />;
 };
 
 export default App;

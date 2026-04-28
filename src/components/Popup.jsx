@@ -1,17 +1,7 @@
 import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
-import "xp.css/dist/XP.css";
 import "./popup.css";
 
-interface DraggablePopupProps {
-  title?: string;
-  isOpen: boolean;
-  onClose: () => void;
-  children: ReactNode;
-  zIndex: number;
-  onBringToFront: () => void;
-}
-
-const Popup: React.FC<DraggablePopupProps> = ({
+export const Popup = ({
   title,
   isOpen,
   onClose,
@@ -23,10 +13,10 @@ const Popup: React.FC<DraggablePopupProps> = ({
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const startPos = useRef({ x: 0, y: 0 });
 
-  const popupRef = useRef<HTMLDivElement | null>(null);
+  const popupRef = useRef(null);
 
   const onMouseMove = useCallback(
-    (e: MouseEvent) => {
+    (e) => {
       if (!isDragging) return;
       setPosition({
         x: e.clientX - startPos.current.x,
@@ -38,7 +28,7 @@ const Popup: React.FC<DraggablePopupProps> = ({
 
   const onMouseUp = () => setIsDragging(false);
 
-  const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+  const onMouseDown = (e) => {
     e.stopPropagation();
     setIsDragging(true);
     startPos.current = { x: e.clientX - position.x, y: e.clientY - position.y };
@@ -88,5 +78,3 @@ const Popup: React.FC<DraggablePopupProps> = ({
     </div>
   );
 };
-
-export default Popup;
