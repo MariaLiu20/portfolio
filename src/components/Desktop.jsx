@@ -44,22 +44,22 @@ export const Desktop = () => {
         title={windows[0].title}
         imageUrl="docIcon.png"
         onActivate={() => openWindow(windows[0].id)}
-        x={100}
+        x={-600}
         y={100}
       />
       <Icon
         title={windows[1].title}
         imageUrl="docIcon.png"
         onActivate={() => openWindow(windows[1].id)}
-        x={200}
-        y={500}
+        x={-600}
+        y={180}
       />
       <Icon
         title={windows[2].title}
         imageUrl="docIcon.png"
         onActivate={() => openWindow(windows[2].id)}
-        x={300}
-        y={700}
+        x={-600}
+        y={260}
       />    
       
       <Window
@@ -68,8 +68,8 @@ export const Desktop = () => {
         onClose={() => closeWindow(windows[0].id)}
         zIndex={zIndexes[windows[0].id] || 100}
         onBringToFront={() => bringToFront(windows[0].id)}
-        x={300}
-        y={100}
+        x={200}
+        y={0}
       >
         <iframe
           src="Resume%202026.docx.pdf#toolbar=0"
@@ -83,7 +83,7 @@ export const Desktop = () => {
         onClose={() => closeWindow(windows[1].id)}
         zIndex={zIndexes[windows[1].id] || 100}
         onBringToFront={() => bringToFront(windows[1].id)}
-        x={400}
+        x={600}
         y={200}
       >
         <p> All my projects </p>
@@ -102,7 +102,7 @@ export const Desktop = () => {
         onClose={() => closeWindow(windows[2].id)}
         zIndex={zIndexes[windows[2].id] || 100}
         onBringToFront={() => bringToFront(windows[2].id)}
-        x={900}
+        x={700}
         y={360}
       >
         <p> Message me at marialiu0220@gmail.com </p>
@@ -121,8 +121,8 @@ export const Desktop = () => {
         onClose={() => closeWindow(windows[3].id)}
         zIndex={zIndexes[windows[3].id] || 100}
         onBringToFront={() => bringToFront(windows[3].id)}
-        x={100}
-        y={300}
+        x={900}
+        y={50}
       >
         <Mp3Player />
       </Window>
