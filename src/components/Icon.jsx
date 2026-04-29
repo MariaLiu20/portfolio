@@ -4,7 +4,7 @@ const iconStyle = {
   position: "absolute",
   flexDirection: "column",
   alignItems: "center",
-  width: 64,
+  width: 80,
   textDecoration: "none",
   color: "inherit",
 };
@@ -95,17 +95,15 @@ export const Icon = ({
       aria-label={title}
       style={{
         ...iconStyle,
-        position: "absolute",
         transform: `translate(${position.x}px, ${position.y}px)`,
         cursor: isDragging ? "grabbing" : "grab",
       }}
       onMouseDown={handleMouseDown}
     >
-      <div
-        style={{
-          ...iconImageStyle,
-          backgroundImage: `url('${imageUrl}')`,
-        }}
+      <img
+        src={imageUrl}
+        alt={title}
+        style={iconImageStyle}
       />
       <span style={{ marginTop: 6, fontSize: 12 }}>{title}</span>
     </a>

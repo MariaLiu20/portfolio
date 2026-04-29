@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import "./mp3Player.css";
+import "./Mp3Player.css";
 
 const playlist = [
   {
@@ -112,7 +112,7 @@ export const Mp3Player = () => {
       currTrack.current.load();
       currTrack.current.volume = 0.4;
 
-      // 3. If we were already playing, play the next one automatically
+      // 3. If already playing, auto play next song
       if (isPlaying) {
         currTrack.current
           .play()
@@ -124,9 +124,9 @@ export const Mp3Player = () => {
     if (updateTimer.current) clearInterval(updateTimer.current);
     updateTimer.current = setInterval(seekUpdate, 1000);
 
-    // Cleanup: stop timer if component unmounts
+    // Stop timer if component unmounts
     return () => clearInterval(updateTimer.current);
-  }, [trackIndex]); // <--- This is the trigger
+  }, [trackIndex]); //eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="player-flex">
@@ -135,7 +135,6 @@ export const Mp3Player = () => {
       </div>
       <div className="player-main">
         <select
-          className="track-select"
           onChange={handleTrackChange}
           value={trackIndex}
         >

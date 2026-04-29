@@ -67,7 +67,7 @@ export const Window = ({
         }}
       >
         <div className="popup-header title-bar" onMouseDown={onMouseDown}>
-          <div className="title-bar-text"><img src="https://loveberry.nekoweb.org/assets/musicplayer/player-icon.png" alt="" height="14px" width="14px"/> {title}</div>
+          <div className="title-bar-text">{title}</div>
           <div className="title-bar-controls">
             <button aria-label="Minimize" />
             <button aria-label="Maximize" />
