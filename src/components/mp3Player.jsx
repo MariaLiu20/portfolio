@@ -1,32 +1,31 @@
 import { useEffect, useRef, useState } from "react";
 import "./mp3Player.css";
 
-// Playlist
 const playlist = [
   {
-    name: "One Shot One Kill",
-    artist: "The Cat's Whiskers",
-    path: "https://files.catbox.moe/fegzmf.mp3",
+    name: "Everywhere",
+    artist: "Michelle Branch",
+    path: "https://file.garden/afEyyUDycVrE3Bea/Michelle%20Branch%20-%20Everywhere.mp3",
   },
   {
-    name: "Shooting Arrows",
-    artist: "The Cat's Whiskers",
-    path: "https://files.catbox.moe/zj81lr.mp3",
+    name: "Snow (Hey Oh)",
+    artist: "Red Hot Chili Peppers",
+    path: "https://file.garden/afEyyUDycVrE3Bea/Red%20Hot%20Chili%20Peppers%20-%20Snow%20(Hey%20Oh).mp3",
   },
   {
-    name: "4 REAL",
-    artist: "The Cat's Whiskers",
-    path: "https://files.catbox.moe/fxd8fo.mp3",
+    name: "So Yesterday",
+    artist: "Hilary Duff",
+    path: "https://file.garden/afEyyUDycVrE3Bea/So%20Yesterday.mp3",
   },
   {
-    name: "My Sweetest Love",
-    artist: "The Cat's Whiskers ft. Kazuma Mitchell",
-    path: "https://files.catbox.moe/qe4he5.mp3",
+    name: "Complicated",
+    artist: "Avril Lavigne",
+    path: "https://file.garden/afEyyUDycVrE3Bea/Complicated%205.mp3",
   },
   {
-    name: "Mercy On Me",
-    artist: "The Cat's Whiskers",
-    path: "https://files.catbox.moe/w7nnf9.mp3",
+    name: "Kiss Me",
+    artist: "Sixpence None The Richer",
+    path: "https://file.garden/afEyyUDycVrE3Bea/Sixpence%20None%20The%20Richer%20-%20Kiss%20me%20(1997).mp3",
   },
 ];
 
@@ -72,49 +71,6 @@ export const Mp3Player = () => {
     }
   };
 
-  const loadTrack = (trackIdx) => {
-    if (updateTimer.current) clearInterval(updateTimer.current);
-    resetValues();
-
-    if (currTrack.current) {
-      currTrack.current.src = playlist[trackIdx].path;
-      currTrack.current.load();
-    }
-
-    updateTimer.current = setInterval(seekUpdate, 1000);
-  };
-
-  const playTrack = () => {
-    if (currTrack.current) {
-      currTrack.current.play();
-      setIsPlaying(true);
-    }
-  };
-
-  const playPause = () => {
-     if (currTrack.current && currTrack.current.paused) {
-      currTrack.current.play();
-      setIsPlaying(true);
-    } else if (currTrack.current) {
-      currTrack.current.pause();
-      setIsPlaying(false);
-    }
-  };
-
-  const nextTrack = () => {
-    const newIndex = trackIndex < playlist.length - 1 ? trackIndex + 1 : 0;
-    setTrackIndex(newIndex);
-    loadTrack(newIndex);
-    playTrack();
-  };
-
-  const prevTrack = () => {
-    const newIndex = trackIndex > 0 ? trackIndex - 1 : playlist.length - 1;
-    setTrackIndex(newIndex);
-    loadTrack(newIndex);
-    playTrack();
-  };
-
   const seekTo = (e) => {
     const seekValue = e.target.value;
     if (currTrack.current) {
@@ -124,16 +80,53 @@ export const Mp3Player = () => {
     setSeekValue(seekValue);
   };
 
+  const playPause = () => {
+    if (currTrack.current && currTrack.current.paused) {
+      currTrack.current.play();
+    } else if (currTrack.current) {
+      currTrack.current.pause();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  const nextTrack = () => {
+    setTrackIndex((prev) => (prev < playlist.length - 1 ? prev + 1 : 0));
+  };
+
+  const prevTrack = () => {
+    setTrackIndex((prev) => (prev > 0 ? prev - 1 : playlist.length - 1));
+  };
+
+
   const handleTrackChange = (e) => {
-    const newIndex = parseInt(e.target.value);
-    setTrackIndex(newIndex);
-    loadTrack(newIndex);
-    playTrack();
+    setTrackIndex(parseInt(e.target.value));
   };
 
   useEffect(() => {
-    loadTrack(trackIndex);
-  }, []);
+    // 1. Reset values for the new track
+    resetValues();
+
+    if (currTrack.current) {
+      // 2. Load the new source
+      currTrack.current.src = playlist[trackIndex].path;
+      currTrack.current.load();
+      currTrack.current.volume = 0.4;
+
+      // 3. If we were already playing, play the next one automatically
+      if (isPlaying) {
+        currTrack.current
+          .play()
+          .catch((e) => console.log("Playback interrupted"));
+      }
+    }
+
+    // 4. Set up the progress timer
+    if (updateTimer.current) clearInterval(updateTimer.current);
+    updateTimer.current = setInterval(seekUpdate, 1000);
+
+    // Cleanup: stop timer if component unmounts
+    return () => clearInterval(updateTimer.current);
+  }, [trackIndex]); // <--- This is the trigger
 
   return (
     <div className="player-flex">
@@ -182,7 +175,7 @@ export const Mp3Player = () => {
           </div>
         </div>
       </div>
-      <audio id="music" ref={currTrack}></audio>
+      <audio id="music" ref={currTrack} onEnded={nextTrack}></audio>
     </div>
   );
 };
