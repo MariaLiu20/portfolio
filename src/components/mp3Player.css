@@ -1,12 +1,9 @@
 :root {
   --titlebar-gradient: linear-gradient(90deg, #6a1535, #b23965, #f9a5b9);
   --dialog-blue: #6a1535;
-  --dialog-accent: white; /* color of text on diaglog blue */
-  --titlebar-color: white; /* reccomended to change so its easy to read on titlebar color */
+  --dialog-accent: white; 
+  --titlebar-color: white; 
   --player-image: url(https://i.pinimg.com/originals/e9/39/15/e93915de0f13d4f47c8ddeecabe8a163.gif);
-
-  /*** 98 css styling ***/
-  /* while some of these may specify a single element, theyre used across mulitple */
   --surface: #c0c0c0;
   --button-highlight: #ffffff;
   --button-face: #dfdfdf;

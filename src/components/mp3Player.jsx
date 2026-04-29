@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import "./Mp3Player.css";
+import "./mp3Player.css";
 
 const playlist = [
   {
