@@ -2,11 +2,11 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 const iconStyle = {
   position: "absolute",
-  flexDirection: "column",
   alignItems: "center",
-  width: 80,
+  display: "flex",
+  flexDirection: "column",
+  width: 70,
   textDecoration: "none",
-  color: "inherit",
 };
 
 const iconImageStyle = {
@@ -22,16 +22,13 @@ export const Icon = ({
   imageUrl,
   onActivate,
   onKeyActivate,
-  x,
-  y
 }) => {
   const dragThreshold = 5;
-  const [position, setPosition] = useState({ x, y });
+  const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [hasDragged, setHasDragged] = useState(false);
-  const startPosRef = useRef({ x, y });
-  const dragStartPos = useRef({ x, y });
-
+  const startPosRef = useRef({ x: 0, y: 0 });
+  const dragStartPos = useRef({ x: 0, y: 0 });
   const onMouseMove = useCallback(
     (e) => {
       if (!isDragging) return;
@@ -105,7 +102,7 @@ export const Icon = ({
         alt={title}
         style={iconImageStyle}
       />
-      <span style={{ marginTop: 6, fontSize: 12 }}>{title}</span>
+      <p style={{ marginTop: 6, fontSize: 12, color: "white" }}>{title}</p>
     </a>
   );
 };

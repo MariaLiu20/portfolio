@@ -40,27 +40,23 @@ export const Desktop = () => {
 
   return (
     <>
-      <Icon
-        title={windows[0].title}
-        imageUrl="docIcon.png"
-        onActivate={() => openWindow(windows[0].id)}
-        x={-600}
-        y={100}
-      />
-      <Icon
-        title={windows[1].title}
-        imageUrl="docIcon.png"
-        onActivate={() => openWindow(windows[1].id)}
-        x={-600}
-        y={180}
-      />
-      <Icon
-        title={windows[2].title}
-        imageUrl="docIcon.png"
-        onActivate={() => openWindow(windows[2].id)}
-        x={-600}
-        y={260}
-      />    
+      <div className="desktop-icons">
+        <Icon
+          title={windows[0].title}
+          imageUrl="docIcon.png"
+          onActivate={() => openWindow(windows[0].id)}
+        />
+        <Icon
+          title={windows[1].title}
+          imageUrl="docIcon.png"
+          onActivate={() => openWindow(windows[1].id)}
+        />
+        <Icon
+          title={windows[2].title}
+          imageUrl="docIcon.png"
+          onActivate={() => openWindow(windows[2].id)}
+        />
+      </div>
       
       <Window
         title={windows[0].title}
