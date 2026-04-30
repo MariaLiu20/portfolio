@@ -1,17 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const iconStyle = {
-  position: "absolute",
   alignItems: "center",
   display: "flex",
   flexDirection: "column",
-  width: 70,
+  width: 40,
   textDecoration: "none",
 };
 
 const iconImageStyle = {
-  width: 70,
-  height: 70,
+  width: '80%',
+  height: '80%',
   backgroundSize: "cover",
   backgroundPosition: "center",
   borderRadius: 4,
@@ -102,7 +101,7 @@ export const Icon = ({
         alt={title}
         style={iconImageStyle}
       />
-      <p style={{ marginTop: 6, fontSize: 12, color: "white" }}>{title}</p>
+      <p style={{ marginTop: 6, fontSize: 12, color: "black" }}>{title}</p>
     </a>
   );
 };
