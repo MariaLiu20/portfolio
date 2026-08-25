@@ -49,7 +49,7 @@ export const Icon = ({ title, imageUrl, onActivate, onKeyActivate }) => {
 
   return (
     <a
-      className="duration-250 cursor-pointer hover:scale-105 active:scale-90 flex flex-col items-stretch w-10 no-underline"
+      className="duration-250 cursor-pointer active:scale-90 flex flex-col items-stretch w-10 no-underline"
       href="#"
       onClick={handleClick}
       onKeyDown={onKeyActivate}

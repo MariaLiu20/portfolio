@@ -97,7 +97,6 @@ export const Mp3Player = () => {
     setTrackIndex((prev) => (prev > 0 ? prev - 1 : playlist.length - 1));
   };
 
-
   const handleTrackChange = (e) => {
     setTrackIndex(parseInt(e.target.value));
   };
@@ -129,23 +128,23 @@ export const Mp3Player = () => {
   }, [trackIndex]); //eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-<div className="player-flex min-w-0">
-  <div className="player-icon-holder">
-    <div className="player-icon"></div>
-  </div>
-  <div className="player-main min-w-0">
-    <select
-      onChange={handleTrackChange}
-      value={trackIndex}
-      className="w-full max-w-full box-border"
-    >
-      {playlist.map((track, index) => (
-        <option key={index} value={index}>
-          {track.name} — {track.artist}
-        </option>
-      ))}
-    </select>
-    <div className="controls min-w-0">
+    <div className="player-flex min-w-0">
+      <div className="player-icon-holder">
+        <div className="player-icon"></div>
+      </div>
+      <div className="player-main min-w-0">
+        <select
+          onChange={handleTrackChange}
+          value={trackIndex}
+          className="w-full max-w-full box-border"
+        >
+          {playlist.map((track, index) => (
+            <option key={index} value={index}>
+              {track.name} — {track.artist}
+            </option>
+          ))}
+        </select>
+        <div className="controls min-w-0">
           <div className="seeking">
             <div className="current-time">{currentTime}</div>
             <input

@@ -3,12 +3,13 @@ import { useState } from "react";
 import { Window } from "./Window";
 import { Icon } from "./Icon";
 import { Mp3Player } from "./mp3Player";
+import { MyComputer } from './MyComputer'
 
 export const Desktop = () => {
   // Track all windows
   const [windows, setWindows] = useState([
     { id: 1, title: "Resume", isOpen: false },
-    { id: 2, title: "Work", isOpen: false },
+    { id: 2, title: "Projects", isOpen: false },
     { id: 3, title: "Contact", isOpen: false },
     { id: 4, title: "MP3 Player", isOpen: true },
   ]);
@@ -40,6 +41,7 @@ export const Desktop = () => {
 
   return (
     <>
+    <MyComputer onClose={() => console.log('fuck')}/>
       <div className="desktop-icons absolute left-0 top-10 w-[100px] sm:top-10">
         <Icon
           title={windows[0].title}

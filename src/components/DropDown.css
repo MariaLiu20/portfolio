@@ -1,0 +1,121 @@
+.drop-down {
+  left: var(--dd-left, initial);
+  top: var(--dd-top, initial);
+  right: var(--dd-right, initial);
+  bottom: var(--dd-bottom, initial);
+  position: absolute;
+  display: flex;
+  font-size: 11px;
+  border-bottom: 1px solid transparent;
+}
+
+.drop-down__row {
+  position: relative;
+  display: contents;
+}
+.drop-down__row:hover > *:not(:nth-child(5)) {
+  background: #e99f17;
+  filter: invert(100%);
+}
+.drop-down__row:hover > .drop-down__check > .drop-down__icon {
+  filter: invert(100%);
+}
+
+.drop-down__row--active {
+  position: relative;
+  display: contents;
+}
+.drop-down__row--active > .drop-down__check > .drop-down__icon {
+  filter: invert(100%);
+}
+.drop-down__row--active > *:not(:nth-child(5)) {
+  background: #e99f17;
+  filter: invert(100%);
+}
+
+.drop-down__row--disable {
+  display: contents;
+  color: #8c8c8cb5;
+}
+.drop-down__row--disable:hover > * {
+  background: #e99f17;
+  filter: invert(100%);
+}
+
+.drop-down__title {
+  padding: 0 7px;
+  height: 100%;
+  line-height: 20px;
+  color: white;
+  background-color: #1660e8;
+}
+
+.drop-down__menu {
+  background-color: #fff;
+  z-index: 1;
+  padding: 2px;
+  line-height: 18px;
+  display: grid;
+  position: absolute;
+  box-shadow: 2px 2px 1px rgb(100, 100, 100);
+  border: 1px solid gray;
+  grid-template-columns: 16px auto auto 15px 0px;
+}
+
+.drop-down__separator {
+  grid-column: 1 / 5;
+  height: 7px;
+  padding: 3px 1px;
+  background-color: rgba(0, 0, 0, 0.2);
+  background-clip: content-box;
+}
+
+.drop-down__check {
+  grid-column: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drop-down__icon {
+  max-width: 13px;
+  max-height: 13px;
+  transform: translateX(-2px);
+}
+
+.drop-down__text {
+  white-space: nowrap;
+  padding-right: 8px;
+  grid-column: 2;
+}
+
+.drop-down__hot-key {
+  white-space: nowrap;
+  grid-column: 3;
+  padding-right: 2px;
+}
+
+.drop-down__arrow {
+  position: relative;
+  grid-column: 4;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.drop-down__arrow::before {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 3px 0 3px 3px;
+  border-color: transparent transparent transparent #000;
+  content: "";
+  display: block;
+}
+
+.drop-down__arrow--disable {
+  grid-column: 4;
+  width: 100%;
+  height: 100%;
+}
