@@ -53,8 +53,6 @@ export const WindowDropDowns = ({
     </div>
   );
 }
-
-// export default styled(WindowDropDowns)`
 //   display: inline-flex;
 //   height: ${({ height }) => height || 20}px;
 //   line-height: ${({ height }) => height || 20}px;

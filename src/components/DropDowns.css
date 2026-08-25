@@ -1,5 +1,6 @@
 .window-drop-downs {
   display: inline-flex;
+    justify-content: flex-start;
   height: var(--wdd-height, 20px);
   line-height: var(--wdd-height, 20px);
   position: relative;

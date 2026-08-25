@@ -79,7 +79,7 @@ const clampPosition = useCallback((pos) => {
       className="w-[min(92vw,550px)] overflow-hidden"
     >
       <div
-        className="window w-full max-h-[80vh] overflow-auto"
+        className="window w-full max-h-[80vh] overflow-hidden"
         ref={windowRef}
         style={{ zIndex: zIndex + 1 }}
       >
@@ -91,7 +91,7 @@ const clampPosition = useCallback((pos) => {
             <button aria-label="Close" onClick={onClose} />
           </div>
         </div>
-        <div className="window-body">{children}</div>
+        <div className="window-body p-0 overflow-hidden">{children}</div>
       </div>
     </div>
   );

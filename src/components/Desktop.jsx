@@ -3,16 +3,17 @@ import { useState } from "react";
 import { Window } from "./Window";
 import { Icon } from "./Icon";
 import { Mp3Player } from "./mp3Player";
-import { MyComputer } from './MyComputer'
-
+import { MyComputer } from "./MyComputer";
+import { Footer } from "./Footer"
 export const Desktop = () => {
   // Track all windows
   const [windows, setWindows] = useState([
     { id: 1, title: "Resume", isOpen: false },
-    { id: 2, title: "Projects", isOpen: false },
+    { id: 2, title: "Projects", isOpen: true },
     { id: 3, title: "Contact", isOpen: false },
     { id: 4, title: "MP3 Player", isOpen: true },
   ]);
+  const [focusedWindowId, setFocusedWindowId] = useState(4);
   const [zIndexes, setZIndexes] = useState({});
   const [highestZIndex, setHighestZIndex] = useState(100);
 
@@ -28,10 +29,15 @@ export const Desktop = () => {
     setWindows((prev) =>
       prev.map((p) => (p.id === id ? { ...p, isOpen: false } : p)),
     );
+
+    if (focusedWindowId === id) {
+    setFocusedWindowId(null);
+  }
   };
 
   // Bring clicked window to the front
   const bringToFront = (id) => {
+    setFocusedWindowId(id);
     setHighestZIndex((prev) => prev + 1);
     setZIndexes((prev) => ({
       ...prev,
@@ -41,7 +47,6 @@ export const Desktop = () => {
 
   return (
     <>
-    <MyComputer onClose={() => console.log('fuck')}/>
       <div className="desktop-icons absolute left-0 top-10 w-[100px] sm:top-10">
         <Icon
           title={windows[0].title}
@@ -85,14 +90,7 @@ export const Desktop = () => {
         x={600}
         y={200}
       >
-        <p> All my projects </p>
-        <a
-          href="https://github.com/MariaLiu20"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <p> https://github.com/MariaLiu20 </p>
-        </a>
+        <MyComputer />
       </Window>
 
       <Window
@@ -125,6 +123,18 @@ export const Desktop = () => {
       >
         <Mp3Player />
       </Window>
+      <Footer
+  windows={windows}
+  focusedWindowId={focusedWindowId}
+  onWindowClick={(id) => {
+    console.log('Desktop.jsx')
+    const window = windows.find((window) => window.id === id);
+
+    if (window) {
+      openWindow(id);
+    }
+  }}
+/>
     </>
   );
 };

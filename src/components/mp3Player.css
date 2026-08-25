@@ -1,18 +1,6 @@
 :root {
-  --titlebar-gradient: linear-gradient(90deg, #6a1535, #b23965, #f9a5b9);
-  --dialog-blue: #6a1535;
-  --dialog-accent: white; 
-  --titlebar-color: white; 
   --player-image: url(https://i.pinimg.com/originals/e9/39/15/e93915de0f13d4f47c8ddeecabe8a163.gif);
-  --surface: #c0c0c0;
-  --button-highlight: #ffffff;
-  --button-face: #dfdfdf;
-  --button-shadow: #808080;
-  --light-button-shadow: #a9a9a9;
-  --window-frame: #0a0a0a;
-  --border-field:
-    inset -1px -1px var(--button-highlight), inset 1px 1px var(--button-shadow),
-    inset -2px -2px var(--button-face), inset 2px 2px var(--window-frame);
+
 }
 
 .seeking {

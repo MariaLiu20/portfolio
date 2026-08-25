@@ -9,13 +9,7 @@ import "./DropDown.css";
 export const WindowDropDown = ({ items, position = {}, onClick }) => {
   const [option, setOption] = useState("");
   return (
-    <div className="drop-down"
-  style={{
-    "--dd-left": "initial",
-    "--dd-top": "initial",
-    "--dd-right": "initial",
-    "--dd-bottom": "initial",
-  }}  {...position}>
+    <div {...position}>
       <div className="drop-down__menu">
         {items.map((item, index) => {
           switch (item.type) {

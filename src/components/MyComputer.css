@@ -1,0 +1,430 @@
+.my-computer {
+  height: 100%;
+  width: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: linear-gradient(to right, #edede5 0%, #ede8cd 100%);
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 11px;
+}
+
+/* -------------------------
+   Menu / toolbar
+------------------------- */
+
+.com__toolbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  line-height: 100%;
+  height: 24px;
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.com__options {
+  height: 23px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 1px 0 1px 2px;
+  flex: 1;
+}
+
+.com__windows-logo {
+  height: 100%;
+  border-left: 1px solid white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* -------------------------
+   Function bar
+------------------------- */
+
+.com__function_bar {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+  padding: 1px 3px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.com__function_bar__button,
+.com__function_bar__button--disable {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.com__function_bar__button:hover {
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.com__function_bar__button:active {
+  border-color: rgb(185, 185, 185);
+  background-color: #dedede;
+  box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.7);
+}
+
+.com__function_bar__button--disable {
+  filter: grayscale(1);
+  opacity: 0.7;
+}
+
+.com__function_bar__text {
+  margin-right: 4px;
+}
+
+.com__function_bar__icon {
+  height: 30px;
+  width: 30px;
+}
+
+.com__function_bar__icon--normalize {
+  height: 22px;
+  width: 22px;
+  margin: 0 4px 0 1px;
+}
+
+.com__function_bar__icon--margin12 {
+  height: 22px;
+  width: 22px;
+  margin: 0 1px 0 2px;
+}
+
+.com__function_bar__separate {
+  height: 90%;
+  width: 1px;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin: 0 2px;
+}
+
+.com__function_bar__arrow {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0 4px;
+}
+
+.com__function_bar__arrow::before {
+  content: "";
+  display: block;
+  border-width: 3px 3px 0;
+  border-color: #000 transparent;
+  border-style: solid;
+}
+
+/* -------------------------
+   Address bar
+------------------------- */
+
+.com__address_bar {
+  flex-shrink: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.7);
+  height: 20px;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  padding: 0 2px;
+  box-shadow: inset 0 -2px 3px -1px #b0b0b0;
+}
+
+.com__address_bar__title {
+  line-height: 100%;
+  color: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+}
+
+.com__address_bar__content {
+  border: rgba(122, 122, 255, 0.6) 1px solid;
+  height: 100%;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  background-color: white;
+  position: relative;
+  min-width: 0;
+}
+
+.com__address_bar__content__img {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.com__address_bar__content__img:last-child {
+  width: 15px;
+  height: 15px;
+  right: 1px;
+  position: absolute;
+}
+
+.com__address_bar__content__text {
+  position: absolute;
+  left: 16px;
+  right: 17px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.com__address_bar__go {
+  display: flex;
+  align-items: center;
+  padding: 0 18px 0 5px;
+  height: 100%;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.com__address_bar__go__img {
+  height: 95%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-right: 3px;
+}
+
+/* -------------------------
+   Main content
+------------------------- */
+
+.com__content {
+  flex: 1;
+  min-height: 0;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-top-width: 0;
+  background-color: #f1f1f1;
+  overflow: auto;
+  position: relative;
+}
+
+.com__content__inner {
+  display: flex;
+  min-height: 100%;
+}
+
+/* -------------------------
+   Left sidebar
+------------------------- */
+
+.com__content__left {
+  width: 180px;
+  min-width: 180px;
+  min-height: 100%;
+  background: linear-gradient(to bottom, #748aff 0%, #4057d3 100%);
+  overflow: auto;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.com__content__left__card {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.com__content__left__card:not(:last-child) {
+  margin-bottom: 12px;
+}
+
+.com__content__left__card__header {
+  display: flex;
+  align-items: center;
+  height: 23px;
+  padding-left: 11px;
+  padding-right: 2px;
+  cursor: pointer;
+  background: linear-gradient(
+    to right,
+    rgb(240, 240, 255) 0,
+    rgb(240, 240, 255) 30%,
+    rgb(168, 188, 255) 100%
+  );
+}
+
+.com__content__left__card__header:hover
+  .com__content__left__card__header__text {
+  color: #1c68ff;
+}
+
+.com__content__left__card__header__text {
+  font-weight: 700;
+  color: #0c327d;
+  flex: 1;
+}
+
+.com__content__left__card__header__img {
+  width: 18px;
+  height: 18px;
+  filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.3));
+}
+
+.com__content__left__card__content {
+  padding: 5px 10px;
+  background: linear-gradient(
+    to right,
+    rgb(180, 200, 251) 0%,
+    rgb(164, 185, 251) 50%,
+    rgb(180, 200, 251) 100%
+  );
+}
+
+.com__content__left__card__row {
+  display: flex;
+  margin-bottom: 2px;
+}
+
+.com__content__left__card__img {
+  width: 14px;
+  height: 14px;
+  margin-right: 5px;
+  flex-shrink: 0;
+}
+
+.com__content__left__card__text {
+  font-size: 10px;
+  line-height: 14px;
+  color: #0c327d;
+}
+
+.com__content__left__card__text.link:hover {
+  cursor: pointer;
+  color: #2b72ff;
+  text-decoration: underline;
+}
+
+/* -------------------------
+   Right side
+------------------------- */
+
+.com__content__right {
+  height: 100%;
+  min-width: 0;
+  overflow: auto;
+  background-color: #fff;
+  flex: 1;
+}
+
+.com__content__right__card__header {
+  width: 300px;
+  max-width: calc(100% - 12px);
+  font-weight: 700;
+  padding: 2px 0 3px 12px;
+  position: relative;
+}
+
+.com__content__right__card__header::after {
+  content: "";
+  display: block;
+  background: linear-gradient(to right, #70bfff 0, #fff 100%);
+  position: absolute;
+  bottom: 0;
+  left: -12px;
+  height: 1px;
+  width: 100%;
+}
+
+.com__content__right__card__content {
+  display: flex;
+  align-items: center;
+  padding: 15px 15px 0;
+  flex-wrap: wrap;
+}
+
+.com__content__right__card__item {
+  display: flex;
+  align-items: center;
+  width: 200px;
+  margin-bottom: 15px;
+  height: auto;
+}
+
+.com__content__right__card__img {
+  width: 45px;
+  height: 45px;
+  margin-right: 5px;
+  object-fit: contain;
+}
+
+.com__content__right__card__text {
+  white-space: nowrap;
+  height: 100%;
+}
+
+/* -------------------------
+   About Me
+------------------------- */
+
+.com__content__right__card--me
+  .com__content__right__card__header {
+  transition: 0.4s;
+}
+
+.com__content__right__card--me
+  .com__content__right__card__header::after {
+  transition: 0.4s;
+}
+
+.com__content__right__card--me:hover
+  .com__content__right__card__header {
+  transform: scale(1.2) translate(20px, 5px);
+}
+
+.com__content__right__card--me:hover
+  .com__content__right__card__header::after {
+  width: 0;
+}
+
+.com__content__right__card__item--me {
+  display: flex;
+  align-items: center;
+  width: 200px;
+  margin-bottom: 15px;
+  height: auto;
+  color: inherit;
+  text-decoration: none;
+}
+
+.com__content__right__card__item--me > * {
+  transition: transform 0.2s;
+}
+
+.com__content__right__card__item--me:hover
+  .com__content__right__card__img {
+  transform: rotate(-10deg) scale(0.9);
+}
+
+.com__content__right__card__item--me:hover
+  .com__content__right__card__text {
+  transform: scale(1.2);
+}
+
+/* -------------------------
+   Smaller windows
+------------------------- */
+
+@media (max-width: 600px) {
+  .com__function_bar {
+    overflow-x: auto;
+  }
+
+  .com__content__left {
+    width: 145px;
+    min-width: 145px;
+    padding: 7px;
+  }
+
+  .com__content__right__card__item {
+    width: 150px;
+  }
+
+  .com__content__right__card__content {
+    padding: 10px;
+  }
+}
