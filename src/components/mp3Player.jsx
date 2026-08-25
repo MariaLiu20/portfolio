@@ -116,7 +116,7 @@ export const Mp3Player = () => {
       if (isPlaying) {
         currTrack.current
           .play()
-          .catch((e) => console.log("Playback interrupted"));
+          .catch((e) => console.log("Playback interrupted", e));
       }
     }
 

@@ -10,7 +10,7 @@ export const Desktop = () => {
     { id: 1, title: "Resume", isOpen: false },
     { id: 2, title: "Work", isOpen: false },
     { id: 3, title: "Contact", isOpen: false },
-    { id: 4, title: "MP3 Player", isOpen: true }
+    { id: 4, title: "MP3 Player", isOpen: true },
   ]);
   const [zIndexes, setZIndexes] = useState({});
   const [highestZIndex, setHighestZIndex] = useState(100);
@@ -57,7 +57,7 @@ export const Desktop = () => {
           onActivate={() => openWindow(windows[2].id)}
         />
       </div>
-      
+
       <Window
         title={windows[0].title}
         isOpen={windows[0].isOpen}
@@ -68,9 +68,10 @@ export const Desktop = () => {
         y={0}
       >
         <iframe
-  src="Resume%202026.docx.pdf#toolbar=0"
-  className="w-full h-[70vh] sm:w-[550px] sm:h-[60px]"
-></iframe>
+          src="Resume%202026.docx.pdf#toolbar=0"
+          className="w-full max-w-[550px] block"
+          style={{ aspectRatio: "8.5 / 11" }}
+        ></iframe>
       </Window>
 
       <Window
