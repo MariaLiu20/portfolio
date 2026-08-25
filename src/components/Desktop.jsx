@@ -40,7 +40,7 @@ export const Desktop = () => {
 
   return (
     <>
-      <div className="desktop-icons">
+      <div className="desktop-icons absolute left-0 top-10 w-[100px] sm:top-10">
         <Icon
           title={windows[0].title}
           imageUrl="docIcon.png"
@@ -68,9 +68,9 @@ export const Desktop = () => {
         y={0}
       >
         <iframe
-          src="Resume%202026.docx.pdf#toolbar=0"
-          style={{ width: "550px", height: "690px" }}
-        ></iframe>
+  src="Resume%202026.docx.pdf#toolbar=0"
+  className="w-full h-[70vh] sm:w-[550px] sm:h-[60px]"
+></iframe>
       </Window>
 
       <Window

@@ -23,10 +23,3 @@
 .desktop-icons > :nth-child(2) { top: 100px; }
 .desktop-icons > :nth-child(3) { top: 200px; }
 .desktop-icons > :nth-child(4) { top: 300px; }
-
-@media (max-width: 600px) {
-  .desktop-icons > :nth-child(1) { top: 0; }
-  .desktop-icons > :nth-child(2) { top: 80px; }
-  .desktop-icons > :nth-child(3) { top: 160px; }
-  .desktop-icons > :nth-child(4) { top: 240px; }
-}

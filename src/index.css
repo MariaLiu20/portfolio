@@ -1,7 +1,13 @@
+@import "tailwindcss";
+
 :root {
   background-image: url("/xpDesktop.webp");
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
+}
+
+html, body {
+  max-width: 100vw;
 }
