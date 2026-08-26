@@ -23,7 +23,21 @@ import "./MyComputer.css";
 import { useState } from "react";
 
 export const MyComputer = ({ onClose }) => {
-  const [cd, setCd] = useState("C:\\Projects");
+  const [dirStack, setDirStack] = useState([
+    { id: "root", name: "C:\\Projects" },
+  ]);
+  const cd = dirStack[dirStack.length - 1];
+
+  const navigateTo = (folder) => {
+    setDirStack((prevStack) => [...prevStack, folder]);
+  };
+
+  const goBack = () => {
+    if (dirStack.length > 1) {
+      setDirStack((prevStack) => prevStack.slice(0, -1));
+    }
+  };
+  console.log(dirStack)
 
   function onClickOptionItem(item) {
     switch (item) {
@@ -33,12 +47,6 @@ export const MyComputer = ({ onClose }) => {
       default:
     }
   }
-
-  const goBack = () => {
-    if (cd === "C:\\Projects\\DoReMovies") {
-      setCd("C:\\Projects");
-    }
-  };
 
   return (
     <div className="my-computer">
@@ -102,7 +110,7 @@ export const MyComputer = ({ onClose }) => {
             alt="ie"
             className="com__address_bar__content__img"
           />
-          <div className="com__address_bar__content__text">{cd}</div>
+          <div className="com__address_bar__content__text">{cd.name}</div>
           <img
             src={dropdown}
             alt="dropdown"
@@ -272,7 +280,7 @@ export const MyComputer = ({ onClose }) => {
             </div>
           </div>
 
-          {cd === "C:\\Projects" && (
+          {cd.id === "root" && (
             <div className="com__content__right">
               <div className="com__content__right__card">
                 <div className="com__content__right__card__header">
@@ -351,7 +359,9 @@ export const MyComputer = ({ onClose }) => {
                   <button
                     type="button"
                     className="com__content__right__card__item--me"
-                    onClick={() => setCd(cd + "\\DoReMovies")}
+                    onClick={() =>
+                      navigateTo({ id: "doremovies", name: `${cd.name}\\DoReMovies` })
+                    }
                   >
                     <img
                       className="com__content__right__card__img"
@@ -367,7 +377,7 @@ export const MyComputer = ({ onClose }) => {
               </div>
             </div>
           )}
-          {cd === "C:\\Projects\\DoReMovies" && (
+          {cd.id === "doremovies" && (
             <div className="com__content__right">
               <div className="com__content__right__card">
                 <div className="com__content__right__card__header">
