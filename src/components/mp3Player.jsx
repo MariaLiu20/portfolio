@@ -109,7 +109,7 @@ export const Mp3Player = () => {
       // 2. Load the new source
       currTrack.current.src = playlist[trackIndex].path;
       currTrack.current.load();
-      currTrack.current.volume = 0.4;
+      currTrack.current.volume = 0.07;
 
       // 3. If already playing, auto play next song
       if (isPlaying) {

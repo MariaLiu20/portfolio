@@ -371,16 +371,6 @@
   transition: 0.4s;
 }
 
-.com__content__right__card--me:hover
-  .com__content__right__card__header {
-  transform: scale(1.2) translate(20px, 5px);
-}
-
-.com__content__right__card--me:hover
-  .com__content__right__card__header::after {
-  width: 0;
-}
-
 .com__content__right__card__item--me {
   display: flex;
   align-items: center;
