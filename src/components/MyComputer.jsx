@@ -16,13 +16,15 @@ import menu from "../assets/windowsIcons/358(32x32).png";
 import folder from "../assets/windowsIcons/318(48x48).png";
 import folderOpen from "../assets/windowsIcons/337(32x32).png";
 import disk from "../assets/windowsIcons/334(48x48).png";
-import cd from "../assets/windowsIcons/111(48x48).png";
 import dropdown from "../assets/windowsIcons/dropdown.png";
 import pullup from "../assets/windowsIcons/pullup.png";
 import windows from "../assets/windowsIcons/windows.png";
 import "./MyComputer.css";
+import { useState } from "react";
 
 export const MyComputer = ({ onClose }) => {
+  const [cd, setCd] = useState("C:\\Projects");
+
   function onClickOptionItem(item) {
     switch (item) {
       case "Close":
@@ -31,18 +33,29 @@ export const MyComputer = ({ onClose }) => {
       default:
     }
   }
+
+  const goBack = () => {
+    if (cd === "C:\\Projects\\DoReMovies") {
+      setCd("C:\\Projects");
+    }
+  };
+
   return (
     <div className="my-computer">
       <section className="com__toolbar">
-        <WindowDropDowns
-            items={dropDownData}
-            onClickItem={onClickOptionItem}
-          />
+        <WindowDropDowns items={dropDownData} onClickItem={onClickOptionItem} />
         <div className="com__options"></div>
         <img className="com__windows-logo" src={windows} alt="windows" />
       </section>
       <section className="com__function_bar">
-        <div className="com__function_bar__button--disable">
+        <div
+          className={
+            cd === "C:\\Projects"
+              ? "com__function_bar__button--disable"
+              : "com__function_bar__button"
+          }
+          onClick={cd !== "C:\\Projects" ? goBack : undefined}
+        >
           <img className="com__function_bar__icon" src={back} alt="" />
           <span className="com__function_bar__text">Back</span>
           <div className="com__function_bar__arrow" />
@@ -89,7 +102,7 @@ export const MyComputer = ({ onClose }) => {
             alt="ie"
             className="com__address_bar__content__img"
           />
-          <div className="com__address_bar__content__text">My Computer</div>
+          <div className="com__address_bar__content__text">{cd}</div>
           <img
             src={dropdown}
             alt="dropdown"
@@ -258,115 +271,151 @@ export const MyComputer = ({ onClose }) => {
               </div>
             </div>
           </div>
-          <div className="com__content__right">
-            <div className="com__content__right__card">
-              <div className="com__content__right__card__header">
-                Files Stored on This Computer
-              </div>
-              <div className="com__content__right__card__content">
-                <div className="com__content__right__card__item">
-                  <img
-                    src={folder}
-                    alt="folder"
-                    className="com__content__right__card__img"
-                  />
-                  <div className="com__content__right__card__img-container">
-                    <div className="com__content__right__card__text">
-                      Shared Documents
-                    </div>
-                  </div>
+
+          {cd === "C:\\Projects" && (
+            <div className="com__content__right">
+              <div className="com__content__right__card">
+                <div className="com__content__right__card__header">
+                  Files Stored on This Computer
                 </div>
-                <div className="com__content__right__card__item">
-                  <img
-                    src={folder}
-                    alt="folder"
-                    className="com__content__right__card__img"
-                  />
-                  <div className="com__content__right__card__img-container">
-                    <div className="com__content__right__card__text">
-                      User's Documents
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="com__content__right__card">
-              <div className="com__content__right__card__header">
-                Hard Disk Drives
-              </div>
-              <div className="com__content__right__card__content">
-                <div className="com__content__right__card__item">
-                  <img
-                    src={disk}
-                    alt="disk"
-                    className="com__content__right__card__img"
-                  />
-                  <div className="com__content__right__card__img-container">
-                    <div className="com__content__right__card__text">
-                      Local Disk (C:)
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="com__content__right__card">
-              <div className="com__content__right__card__header">
-                Devices with Removable Storage
-              </div>
-              <div className="com__content__right__card__content">
-                <div className="com__content__right__card__item">
-                  <div className="com__content__right__card__img-container">
+                <div className="com__content__right__card__content">
+                  <div className="com__content__right__card__item">
                     <img
-                      src={cd}
-                      alt="cd"
+                      src={folder}
+                      alt="folder"
                       className="com__content__right__card__img"
                     />
+                    <div className="com__content__right__card__img-container">
+                      <div className="com__content__right__card__text">
+                        Shared Documents
+                      </div>
+                    </div>
                   </div>
-                  <div className="com__content__right__card__text">
-                    CD Drive (D:)
+                  <div className="com__content__right__card__item">
+                    <img
+                      src={folder}
+                      alt="folder"
+                      className="com__content__right__card__img"
+                    />
+                    <div className="com__content__right__card__img-container">
+                      <div className="com__content__right__card__text">
+                        User's Documents
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="com__content__right__card com__content__right__card--me">
-              <div className="com__content__right__card__header">
-                About Me :)
-              </div>
-              <div className="com__content__right__card__content">
-                <a
-                  href="https://github.com/ShizukuIchi"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="com__content__right__card__item--me"
-                >
-                  <img
-                    className="com__content__right__card__img"
-                    src={"react.svg"}
-                    alt="control"
-                  />
-                  <div className="com__content__right__card__text">Github</div>
-                </a>
-                <a
-                  href="https://sh1zuku.csie.io"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="com__content__right__card__item--me"
-                >
-                  <img
-                    className="com__content__right__card__img"
-                    src="https://a.ppy.sh/2926513_1448497605.png"
-                    alt="control"
-                  />
-                  <div className="com__content__right__card__text">
-                    My Website
+              <div className="com__content__right__card">
+                <div className="com__content__right__card__header">
+                  Hard Disk Drives
+                </div>
+                <div className="com__content__right__card__content">
+                  <div className="com__content__right__card__item">
+                    <img
+                      src={disk}
+                      alt="disk"
+                      className="com__content__right__card__img"
+                    />
+                    <div className="com__content__right__card__img-container">
+                      <div className="com__content__right__card__text">
+                        Local Disk (C:)
+                      </div>
+                    </div>
                   </div>
-                </a>
+                </div>
+              </div>
+              <div className="com__content__right__card">
+                <div className="com__content__right__card__header">
+                  Devices with Removable Storage
+                </div>
+                <div className="com__content__right__card__content">
+                  <div className="com__content__right__card__item">
+                    <div className="com__content__right__card__img-container">
+                      <img
+                        src={cd}
+                        alt="cd"
+                        className="com__content__right__card__img"
+                      />
+                    </div>
+                    <div className="com__content__right__card__text">
+                      CD Drive (D:)
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="com__content__right__card com__content__right__card--me">
+                <div className="com__content__right__card__header">
+                  Websites
+                </div>
+                <div className="com__content__right__card__content">
+                  <button
+                    type="button"
+                    className="com__content__right__card__item--me"
+                    onClick={() => setCd(cd + "\\DoReMovies")}
+                  >
+                    <img
+                      className="com__content__right__card__img"
+                      src="https://a.ppy.sh/2926513_1448497605.png"
+                      alt=""
+                    />
+
+                    <div className="com__content__right__card__text">
+                      DoReMovies
+                    </div>
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+          )}
+          {cd === "C:\\Projects\\DoReMovies" && (
+            <div className="com__content__right">
+              <div className="com__content__right__card">
+                <div className="com__content__right__card__header">
+                  DoReMovies
+                </div>
+
+                <div className="com__content__right__card__content">
+                  {/* Deployed Website */}
+                  <a
+                    href="YOUR_DEPLOYED_WEBSITE_URL"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="com__content__right__card__item--me"
+                  >
+                    <img
+                      className="com__content__right__card__img"
+                      src="https://a.ppy.sh/2926513_1448497605.png"
+                      alt=""
+                    />
+
+                    <div className="com__content__right__card__text">
+                      Website
+                    </div>
+                  </a>
+
+                  {/* GitHub */}
+                  <a
+                    href="https://github.com/MariaLiu20/do-re-movies"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="com__content__right__card__item--me"
+                  >
+                    <img
+                      className="com__content__right__card__img"
+                      src="github-logo.png"
+                      alt=""
+                    />
+
+                    <div className="com__content__right__card__text">
+                      Source Code
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
   );
 };
-
