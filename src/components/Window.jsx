@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import "xp.css/dist/XP.css";
 
 export const Window = ({
   title,
@@ -76,10 +77,10 @@ const clampPosition = useCallback((pos) => {
     <div
       style={{ position: "absolute", top: position.y, left: position.x, zIndex }}
       onClick={onBringToFront}
-      className="w-[min(92vw,550px)] overflow-hidden"
+      className="overflow-hidden"
     >
       <div
-        className="window w-full max-h-[80vh] overflow-hidden"
+        className="window w-full max-h-[80vh]"
         ref={windowRef}
         style={{ zIndex: zIndex + 1 }}
       >

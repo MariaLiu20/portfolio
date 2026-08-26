@@ -50,7 +50,7 @@ export const Desktop = () => {
       <div className="desktop-icons absolute left-0 top-10 w-[100px] sm:top-10">
         <Icon
           title={windows[0].title}
-          imageUrl="docIcon.png"
+          imageUrl="resumeIcon.png"
           onActivate={() => openWindow(windows[0].id)}
         />
         <Icon
@@ -61,6 +61,11 @@ export const Desktop = () => {
         <Icon
           title={windows[2].title}
           imageUrl="docIcon.png"
+          onActivate={() => openWindow(windows[2].id)}
+        />
+        <Icon
+          title={windows[3].title}
+          imageUrl="mp3Icon.png"
           onActivate={() => openWindow(windows[2].id)}
         />
       </div>

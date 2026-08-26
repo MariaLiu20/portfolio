@@ -1,59 +1,559 @@
-:root {
-  --player-image: url(https://i.pinimg.com/originals/e9/39/15/e93915de0f13d4f47c8ddeecabe8a163.gif);
+.wmp-player {
+  width: 258px;
+  box-sizing: border-box;
 
-}
-
-.seeking {
-  font-weight: normal;
+  font-family: Tahoma, Arial, sans-serif;
   font-size: 11px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  margin: 12px 0;
-}
 
-.player-flex {
-  display: flex;
-  gap: 3px;
-}
+  background: #d4d0c8;
 
-.player-main {
-  width: calc(100% - 100px);
-  margin-top: 1px;
-}
-
-.player-icon-holder {
-  border: 2px solid var(--surface);
-  width: 95px;
-  height: 95px;
-  padding: 1px;
-  background-image: linear-gradient(-45deg, rgb(144, 154, 228), rgba(193, 192, 207, 0.5)), var(--player-image);
-  background-size: cover;
-  background-repeat: no-repeat;
-  border-width: 1px;
-  border-style: solid;
-  border-color: var(--button-shadow) var(--button-highlight)
-    var(--button-highlight) var(--button-shadow);
+  border: 1px solid #808080;
 
   overflow: hidden;
-  position: relative;
-  z-index: 2;
 }
 
-.player-icon {
-  background-image: var(--player-image);
-  background-size: contain;
-  background-repeat: no-repeat;
+/* =========================================
+   TITLE BAR
+   ========================================= */
+
+.wmp-titlebar {
+  height: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-left: 5px;
+
+  color: white;
+  font-weight: bold;
+
+  background: linear-gradient(to bottom, #4d8bdc 0%, #1764c0 45%, #0b4fa8 100%);
+
+  border-bottom: 1px solid #0b3d91;
+}
+
+.wmp-title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.wmp-title-icon {
+  width: 14px;
+  height: 14px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 8px;
+
+  background: #dfefff;
+  color: #174f9b;
+
+  border-radius: 2px;
+}
+
+.wmp-window-buttons {
+  display: flex;
+  gap: 2px;
+  padding-right: 3px;
+}
+
+/*
+ * These selectors intentionally use .wmp-player button
+ * so the generic xp.css button styles don't win.
+ */
+
+.wmp-player .wmp-window-button {
+  width: 18px;
+  height: 18px;
+
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #000;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+
+  background: linear-gradient(#ffffff, #d7e4f5);
+
+  border: 1px solid #ffffff;
+  border-radius: 2px;
+
+  box-shadow:
+    inset -1px -1px #6c7c91,
+    inset 1px 1px #ffffff;
+
+  cursor: pointer;
+}
+
+.wmp-player .wmp-window-button:hover {
+  background: #e8f1ff;
+}
+
+.wmp-player .wmp-window-button.wmp-close {
+  background: linear-gradient(#f8aaa0, #d94738);
+
+  color: white;
+
+  text-shadow: 1px 1px #7c2019;
+}
+
+/* =========================================
+   MENU BAR
+   ========================================= */
+
+.wmp-menu {
+  height: 19px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 0 6px;
+
+  background: #f3f3f3;
+
+  color: #111;
+
+  border-bottom: 1px solid #b8b8b8;
+}
+
+.wmp-menu span {
+  cursor: default;
+}
+
+.wmp-menu span:hover {
+  text-decoration: underline;
+}
+
+.wmp-menu .wmp-sound {
+  margin-left: auto;
+
+  color: #333;
+}
+
+/* =========================================
+   BODY
+   ========================================= */
+
+.wmp-body {
+  position: relative;
+
+  padding: 7px;
+
+  background: linear-gradient(135deg, #f9fbff 0%, #dbe8f8 45%, #b7cae4 100%);
+
+  border-top: 1px solid white;
+}
+
+/* =========================================
+   TOP DECORATION
+   ========================================= */
+
+.wmp-top-edge {
+  height: 13px;
+
+  position: relative;
+
+  background: linear-gradient(to bottom, #dce9fa, #6d8fca);
+
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+
+  border-bottom: 1px solid #466da8;
+}
+
+.wmp-top-circle {
+  position: absolute;
+
+  left: -2px;
+  top: -1px;
+
+  width: 15px;
+  height: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: linear-gradient(#ffffff, #b8cbe5);
+
+  border: 1px solid #5576a8;
+
+  color: #173d75;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* =========================================
+   SCREEN
+   ========================================= */
+
+.wmp-screen {
+  height: 180px;
+
+  background: #000;
+
+  padding: 10px;
+
+  box-sizing: border-box;
+
+  border: 0;
+}
+
+.wmp-screen-content {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  background: #000;
+}
+
+/*
+ * Placeholder visualization.
+ * Replace .wmp-disc with album art later if you want.
+ */
+
+.wmp-disc {
   width: 95px;
   height: 95px;
-  display: display;
-}
-.player-buttons {
+
   display: flex;
-  gap: 10px;
-  margin: 5px 5px 0 5px;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    #eeeeee 0%,
+    #aaaaaa 45%,
+    #333333 47%,
+    #111111 100%
+  );
+
+  color: #222;
+
+  font-size: 40px;
+
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.25);
 }
-.player-buttons .window-button {
+
+.wmp-track-display {
+  margin-top: 10px;
+
+  text-align: center;
+
+  color: white;
+
+  text-shadow: 1px 1px #000;
+}
+
+.wmp-track-name {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.wmp-track-artist {
+  margin-top: 2px;
+
+  font-size: 10px;
+
+  color: #c8c8c8;
+}
+
+/* =========================================
+   STATUS BAR
+   ========================================= */
+
+.wmp-status {
+  height: 17px;
+
+  display: flex;
+  align-items: center;
+
+  background: #05051a;
+
+  color: #c9d8ff;
+
+  border-bottom: 1px solid #222;
+}
+
+.wmp-status-icon {
+  width: 25px;
+
+  padding-left: 4px;
+
+  color: #ffffff;
+  font-size: 8px;
+}
+
+.wmp-status-text {
+  width: 55px;
+
+  color: #9bb6e8;
+}
+
+.wmp-status-progress {
+  flex: 1;
+
+  height: 5px;
+
+  margin-right: 5px;
+
+  background: #1c1c2e;
+
+  border: 1px solid #333;
+}
+
+.wmp-status-progress-fill {
+  height: 100%;
+
+  background: #82e53c;
+}
+
+/* =========================================
+   SEEK BAR
+   ========================================= */
+
+.wmp-seek-row {
+  height: 21px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+
+  padding: 0 3px;
+
+  background: #d7e5f5;
+}
+
+.wmp-time {
+  width: 27px;
+
+  font-size: 9px;
+
+  color: #222;
+}
+
+.wmp-time:last-child {
+  text-align: right;
+}
+
+.wmp-seek {
+  flex: 1;
+
+  height: 8px;
+
+  appearance: none;
+
+  background: #8ea8c8;
+
+  border: 1px solid #59769c;
+
+  cursor: pointer;
+}
+
+.wmp-seek::-webkit-slider-thumb {
+  appearance: none;
+
+  width: 10px;
+  height: 13px;
+
+  background: linear-gradient(#ffffff, #b5cce9);
+
+  border: 1px solid #57769e;
+
+  border-radius: 2px;
+}
+
+/* =========================================
+   CONTROLS
+   ========================================= */
+
+.wmp-controls {
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 4px;
+
+  padding: 0 6px;
+
+  background: linear-gradient(to bottom, #edf5ff, #c0d5ed);
+
+  border-top: 1px solid white;
+}
+
+/*
+ * Override xp.css here.
+ */
+
+.wmp-player .wmp-control,
+.wmp-player .wmp-small-control {
+  appearance: none;
+
   box-sizing: border-box;
+
+  width: 34px !important;
+  min-width: 34px !important;
+
+  height: 34px !important;
+  min-height: 34px !important;
+
+  flex: 0 0 34px;
+
+  margin: 0;
+  padding: 0 !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50% !important;
+
+  border: 1px solid #7895b5 !important;
+
+  background: linear-gradient(
+    145deg,
+    #ffffff 0%,
+    #e8f3ff 45%,
+    #b3cee9 100%
+  ) !important;
+
+  box-shadow:
+    inset 1px 1px 2px #ffffff,
+    inset -1px -1px 2px #718ba8;
+
+  color: #315a83;
+
+  cursor: pointer;
+
+  font-family: Arial, sans-serif;
+}
+
+.wmp-player .wmp-control:hover,
+.wmp-player .wmp-small-control:hover {
+  background: linear-gradient(#ffffff, #eaf4ff 55%, #bdd5ed);
+}
+
+.wmp-player .wmp-control:active,
+.wmp-player .wmp-small-control:active {
+  box-shadow: inset 1px 1px #7289a5;
+}
+
+.wmp-control {
+  width: 29px;
+  height: 29px;
+
+  border-radius: 50% !important;
+
+  font-family: Arial, sans-serif;
+}
+
+.wmp-play {
+  font-size: 15px;
+}
+
+.wmp-stop {
+  font-size: 10px;
+}
+
+.wmp-separator {
+  width: 1px;
+  height: 24px;
+
+  margin: 0 3px;
+
+  background: #9caec4;
+
+  border-right: 1px solid white;
+}
+
+.wmp-small-control {
+  width: 25px;
+  height: 20px;
+
+  border-radius: 4px;
+}
+
+.wmp-volume {
+  display: flex;
+  align-items: center;
+
+  gap: 3px;
+
+  margin-left: auto;
+}
+
+.wmp-volume-slider {
+  width: 45px;
+
+  appearance: none;
+
+  height: 5px;
+
+  background: #829abb;
+
+  border: 1px solid #637b9c;
+}
+
+.wmp-volume-slider::-webkit-slider-thumb {
+  appearance: none;
+
+  width: 7px;
+  height: 12px;
+
+  background: #e7f0fb;
+
+  border: 1px solid #617897;
+
+  border-radius: 2px;
+}
+
+/* =========================================
+   PLAYLIST
+   ========================================= */
+
+.wmp-playlist {
+  padding-top: 5px;
+}
+
+.wmp-player .wmp-track-select {
+  width: 100%;
+  height: 20px;
+
+  box-sizing: border-box;
+
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 10px;
+
+  color: #111;
+
+  background: white;
+
+  border: 1px solid #7f9db9;
+
+  padding: 0 2px;
 }

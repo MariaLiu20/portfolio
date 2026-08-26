@@ -35,146 +35,277 @@ export const Mp3Player = () => {
   const [currentTime, setCurrentTime] = useState("0:00");
   const [duration, setDuration] = useState("0:00");
   const [seekValue, setSeekValue] = useState(0);
+  const [volume, setVolume] = useState(7);
 
   const currTrack = useRef(null);
-  const updateTimer = useRef(null);
 
-  const resetValues = () => {
-    setCurrentTime("0:00");
-    setDuration("0:00");
-    setSeekValue(0);
+  const track = playlist[trackIndex];
+
+  const formatTime = (time) => {
+    if (!time || isNaN(time)) return "0:00";
+
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+
+    return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   };
 
   const seekUpdate = () => {
     if (!currTrack.current) return;
 
-    let seekPosition = 0;
-    if (!isNaN(currTrack.current.duration)) {
-      seekPosition =
-        currTrack.current.currentTime * (100 / currTrack.current.duration);
-      setSeekValue(seekPosition);
+    const audio = currTrack.current;
 
-      let currentMinutes = Math.floor(currTrack.current.currentTime / 60);
-      let currentSeconds = Math.floor(
-        currTrack.current.currentTime - currentMinutes * 60,
-      );
-      let durationMinutes = Math.floor(currTrack.current.duration / 60);
-      let durationSeconds = Math.floor(
-        currTrack.current.duration - durationMinutes * 60,
-      );
+    if (!isNaN(audio.duration) && audio.duration > 0) {
+      const position = (audio.currentTime / audio.duration) * 100;
 
-      if (currentSeconds < 10) currentSeconds = "0" + currentSeconds;
-      if (durationSeconds < 10) durationSeconds = "0" + durationSeconds;
-
-      setCurrentTime(currentMinutes + ":" + currentSeconds);
-      setDuration(durationMinutes + ":" + durationSeconds);
+      setSeekValue(position);
+      setCurrentTime(formatTime(audio.currentTime));
+      setDuration(formatTime(audio.duration));
     }
   };
 
-  const seekTo = (e) => {
-    const seekValue = e.target.value;
-    if (currTrack.current) {
-      const seekto = currTrack.current.duration * (seekValue / 100);
-      currTrack.current.currentTime = seekto;
-    }
-    setSeekValue(seekValue);
-  };
+  const playPause = async () => {
+    if (!currTrack.current) return;
 
-  const playPause = () => {
-    if (currTrack.current && currTrack.current.paused) {
-      currTrack.current.play();
-    } else if (currTrack.current) {
+    if (currTrack.current.paused) {
+      try {
+        await currTrack.current.play();
+        setIsPlaying(true);
+      } catch (error) {
+        console.error("Unable to play audio:", error);
+      }
+    } else {
       currTrack.current.pause();
+      setIsPlaying(false);
     }
-    setIsPlaying(!isPlaying);
   };
 
   const nextTrack = () => {
-    setTrackIndex((prev) => (prev < playlist.length - 1 ? prev + 1 : 0));
+    setTrackIndex((prev) =>
+      prev < playlist.length - 1 ? prev + 1 : 0,
+    );
   };
 
   const prevTrack = () => {
-    setTrackIndex((prev) => (prev > 0 ? prev - 1 : playlist.length - 1));
+    setTrackIndex((prev) =>
+      prev > 0 ? prev - 1 : playlist.length - 1,
+    );
+  };
+
+  const seekTo = (e) => {
+    const value = Number(e.target.value);
+
+    if (currTrack.current && !isNaN(currTrack.current.duration)) {
+      currTrack.current.currentTime =
+        currTrack.current.duration * (value / 100);
+    }
+
+    setSeekValue(value);
   };
 
   const handleTrackChange = (e) => {
-    setTrackIndex(parseInt(e.target.value));
+    setTrackIndex(Number(e.target.value));
+  };
+
+  const handleVolumeChange = (e) => {
+    const value = Number(e.target.value);
+
+    setVolume(value);
+
+    if (currTrack.current) {
+      currTrack.current.volume = value / 100;
+    }
   };
 
   useEffect(() => {
-    // 1. Reset values for the new track
-    resetValues();
+    if (!currTrack.current) return;
 
-    if (currTrack.current) {
-      // 2. Load the new source
-      currTrack.current.src = playlist[trackIndex].path;
-      currTrack.current.load();
-      currTrack.current.volume = 0.07;
+    currTrack.current.src = track.path;
+    currTrack.current.load();
 
-      // 3. If already playing, auto play next song
-      if (isPlaying) {
-        currTrack.current
-          .play()
-          .catch((e) => console.log("Playback interrupted", e));
-      }
+    currTrack.current.volume = volume / 100;
+
+    setCurrentTime("0:00");
+    setDuration("0:00");
+    setSeekValue(0);
+
+    if (isPlaying) {
+      currTrack.current
+        .play()
+        .catch((error) => {
+          console.error("Playback failed:", error);
+          setIsPlaying(false);
+        });
     }
+  }, [trackIndex]);
 
-    // 4. Set up the progress timer
-    if (updateTimer.current) clearInterval(updateTimer.current);
-    updateTimer.current = setInterval(seekUpdate, 1000);
+  useEffect(() => {
+    const timer = setInterval(seekUpdate, 500);
 
-    // Stop timer if component unmounts
-    return () => clearInterval(updateTimer.current);
-  }, [trackIndex]); //eslint-disable-line react-hooks/exhaustive-deps
+    return () => clearInterval(timer);
+  }, []);
+
+  const handleEnded = () => {
+    nextTrack();
+  };
 
   return (
-    <div className="player-flex min-w-0">
-      <div className="player-icon-holder">
-        <div className="player-icon"></div>
-      </div>
-      <div className="player-main min-w-0">
-        <select
-          onChange={handleTrackChange}
-          value={trackIndex}
-          className="w-full max-w-full box-border"
-        >
-          {playlist.map((track, index) => (
-            <option key={index} value={index}>
-              {track.name} — {track.artist}
-            </option>
-          ))}
-        </select>
-        <div className="controls min-w-0">
-          <div className="seeking">
-            <div className="current-time">{currentTime}</div>
-            <input
-              type="range"
-              min="1"
-              max="100"
-              value={seekValue}
-              className="seek_slider"
-              onChange={seekTo}
-            />
-            <div className="total-duration">{duration}</div>
-          </div>
+    <div className="wmp-player">
 
-          <div className="player-buttons min-w-0">
-            <button className="window-button prev-track" onClick={prevTrack}>
-              ⏮
-            </button>
-            <button
-              className="window-button playpause-track"
-              onClick={playPause}
-            >
-              {isPlaying ? "⏸" : "▶"}
-            </button>
-            <button className="window-button next-track" onClick={nextTrack}>
-              ⏭
-            </button>
+      {/* Menu */}
+      <div className="wmp-menu">
+        <span className="wmp-sound">
+          Sound: <strong>ON</strong>
+        </span>
+      </div>
+
+      {/* Main Player */}
+      <div className="wmp-body">
+
+
+        {/* Media display */}
+        <div className="wmp-screen">
+          <div className="wmp-screen-content">
+            <div className="wmp-disc">
+              ♪
+            </div>
+
+            <div className="wmp-track-display">
+              <div className="wmp-track-name">
+                {track.name}
+              </div>
+
+              <div className="wmp-track-artist">
+                {track.artist}
+              </div>
+            </div>
           </div>
         </div>
+
+        {/* Status bar */}
+        <div className="wmp-status">
+
+          <div className="wmp-status-icon">
+           {isPlaying ? "⏸" : "▶"}
+          </div>
+
+          <div className="wmp-status-progress">
+            <div
+              className="wmp-status-progress-fill"
+              style={{ width: `${seekValue}%` }}
+            />
+          </div>
+
+        </div>
+
+        {/* Progress / seek */}
+        <div className="wmp-seek-row">
+
+          <span className="wmp-time">
+            {currentTime}
+          </span>
+
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={seekValue}
+            onChange={seekTo}
+            className="wmp-seek"
+          />
+
+          <span className="wmp-time">
+            {duration}
+          </span>
+
+        </div>
+
+        {/* Controls */}
+        <div className="wmp-controls">
+
+          <button
+            className="wmp-control wmp-play"
+            onClick={playPause}
+            title={isPlaying ? "Pause" : "Play"}
+          >
+            {isPlaying ? "⏸" : "▶"}
+          </button>
+
+          <button
+            className="wmp-control wmp-stop"
+            onClick={() => {
+              currTrack.current?.pause();
+
+              if (currTrack.current) {
+                currTrack.current.currentTime = 0;
+              }
+
+              setIsPlaying(false);
+              setSeekValue(0);
+              setCurrentTime("0:00");
+            }}
+            title="Stop"
+          >
+            ■
+          </button>
+
+          <div className="wmp-separator" />
+
+          <button
+            className="wmp-small-control"
+            onClick={prevTrack}
+            title="Previous"
+          >
+            |◀
+          </button>
+
+          <button
+            className="wmp-small-control"
+            onClick={nextTrack}
+            title="Next"
+          >
+            ▶|
+          </button>
+
+          <div className="wmp-volume">
+            <span>🔊</span>
+
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value={volume}
+              onChange={handleVolumeChange}
+              className="wmp-volume-slider"
+            />
+          </div>
+
+        </div>
+
+        {/* Playlist */}
+        <div className="wmp-playlist">
+
+          <select
+            value={trackIndex}
+            onChange={handleTrackChange}
+            className="wmp-track-select"
+          >
+            {playlist.map((item, index) => (
+              <option key={index} value={index}>
+                {item.name} — {item.artist}
+              </option>
+            ))}
+          </select>
+
+        </div>
+
       </div>
-      <audio id="music" ref={currTrack} onEnded={nextTrack}></audio>
+
+      <audio
+        ref={currTrack}
+        onEnded={handleEnded}
+      />
+
     </div>
   );
 };

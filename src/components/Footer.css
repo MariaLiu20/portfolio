@@ -99,10 +99,9 @@
   overflow: hidden;
 }
 
-.footer__window {
+button.footer__window {
   flex: 1;
-  min-width: 80px;
-  max-width: 150px;
+  width: 150px;
 
   color: #fff;
   background-image: none;
@@ -127,15 +126,15 @@
   position: relative;
   display: flex;
   align-items: center;
-
-  cursor: pointer;
 }
 
-.footer__window:hover {
+button.footer__window:hover {
+  box-shadow: none;
   background-color: #53a3ff;
 }
 
-.footer__window:active {
+button.footer__window:active {
+  background: none;
   background-color: #1e52b7;
 
   box-shadow:
@@ -144,6 +143,7 @@
 }
 
 .footer__window.focus {
+  appearance: none;
   background-color: #1e52b7;
 
   box-shadow:
