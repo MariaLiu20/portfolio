@@ -63,7 +63,7 @@ export const Icon = ({ title, imageUrl, onActivate, onKeyActivate }) => {
       onMouseDown={handleMouseDown}
     >
       <img src={imageUrl} alt={title} className="w-4/5 h-4/5 self-center bg-cover bg-center rounded" />
-      <p className="mt-1.5 text-xs text-black text-center">{title}</p>
+      <p className="text-xs text-white block shrink font-sans text-center">{title}</p>
     </a>
   );
 };

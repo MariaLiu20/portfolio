@@ -66,7 +66,7 @@ export const Desktop = () => {
         <Icon
           title={windows[3].title}
           imageUrl="mp3Icon.png"
-          onActivate={() => openWindow(windows[2].id)}
+          onActivate={() => openWindow(windows[3].id)}
         />
       </div>
 
