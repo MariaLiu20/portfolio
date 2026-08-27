@@ -394,7 +394,7 @@ export const MyComputer = ({ onClose }) => {
                   >
                     <img
                       className="com__content__right__card__img"
-                      src="https://a.ppy.sh/2926513_1448497605.png"
+                      src="drmlogo.png"
                       alt=""
                     />
 
