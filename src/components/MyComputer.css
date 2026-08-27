@@ -386,14 +386,6 @@
   transition: transform 0.2s;
 }
 
-.com__content__right__card__item--me:hover .com__content__right__card__img {
-  transform: rotate(-10deg) scale(0.9);
-}
-
-.com__content__right__card__item--me:hover .com__content__right__card__text {
-  transform: scale(1.2);
-}
-
 /* -------------------------
    Smaller windows
 ------------------------- */
