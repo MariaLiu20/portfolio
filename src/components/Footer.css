@@ -82,8 +82,9 @@
   display: block;
 }
 
-.footer__start:hover {
-  filter: brightness(105%);
+button.footer__start:hover {
+  background: none;
+  box-shadow: none;
 }
 
 .footer__start:active {

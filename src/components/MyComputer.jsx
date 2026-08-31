@@ -340,7 +340,7 @@ export const MyComputer = ({ onClose }) => {
                   <div className="com__content__right__card__item">
                     <div className="com__content__right__card__img-container">
                       <img
-                        src={cd}
+                        src={'cdDrive.png'}
                         alt="cd"
                         className="com__content__right__card__img"
                       />
@@ -356,7 +356,7 @@ export const MyComputer = ({ onClose }) => {
                   Websites
                 </div>
                 <div className="com__content__right__card__content">
-                  <button
+                  <a
                     type="button"
                     className="com__content__right__card__item--me"
                     onClick={() =>
@@ -372,7 +372,7 @@ export const MyComputer = ({ onClose }) => {
                     <div className="com__content__right__card__text">
                       DoReMovies
                     </div>
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>

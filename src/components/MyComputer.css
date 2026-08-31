@@ -380,10 +380,11 @@
   height: auto;
   color: inherit;
   text-decoration: none;
+  
 }
 
-.com__content__right__card__item--me > * {
-  transition: transform 0.2s;
+.com__content__right__card__item--me:hover {
+  cursor: pointer;
 }
 
 /* -------------------------
