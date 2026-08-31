@@ -284,6 +284,28 @@ export const MyComputer = ({ onClose }) => {
             <div className="com__content__right">
               <div className="com__content__right__card">
                 <div className="com__content__right__card__header">
+                  Websites
+                </div>
+                <div className="com__content__right__card__content">
+                  <a
+                    type="button"
+                    className="com__content__right__card__item--me"
+                    onClick={() =>
+                      navigateTo({ id: "doremovies", name: `${cd.name}\\DoReMovies` })
+                    }
+                  >
+                    <img
+                      className="com__content__right__card__img"
+                      src="743(32x32).png"
+                      alt=""
+                    />
+
+                    <div className="com__content__right__card__text">
+                      DoReMovies
+                    </div>
+                  </a>
+                </div>
+                <div className="com__content__right__card__header">
                   Files Stored on This Computer
                 </div>
                 <div className="com__content__right__card__content">
@@ -349,30 +371,6 @@ export const MyComputer = ({ onClose }) => {
                       CD Drive (D:)
                     </div>
                   </div>
-                </div>
-              </div>
-              <div className="com__content__right__card com__content__right__card--me">
-                <div className="com__content__right__card__header">
-                  Websites
-                </div>
-                <div className="com__content__right__card__content">
-                  <a
-                    type="button"
-                    className="com__content__right__card__item--me"
-                    onClick={() =>
-                      navigateTo({ id: "doremovies", name: `${cd.name}\\DoReMovies` })
-                    }
-                  >
-                    <img
-                      className="com__content__right__card__img"
-                      src="https://a.ppy.sh/2926513_1448497605.png"
-                      alt=""
-                    />
-
-                    <div className="com__content__right__card__text">
-                      DoReMovies
-                    </div>
-                  </a>
                 </div>
               </div>
             </div>
