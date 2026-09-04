@@ -291,7 +291,10 @@ export const MyComputer = ({ onClose }) => {
                     type="button"
                     className="com__content__right__card__item--me"
                     onClick={() =>
-                      navigateTo({ id: "doremovies", name: `${cd.name}\\DoReMovies` })
+                      navigateTo({
+                        id: "doremovies",
+                        name: `${cd.name}\\DoReMovies`,
+                      })
                     }
                   >
                     <img
@@ -362,7 +365,7 @@ export const MyComputer = ({ onClose }) => {
                   <div className="com__content__right__card__item">
                     <div className="com__content__right__card__img-container">
                       <img
-                        src={'cdDrive.png'}
+                        src={"cdDrive.png"}
                         alt="cd"
                         className="com__content__right__card__img"
                       />
@@ -385,7 +388,7 @@ export const MyComputer = ({ onClose }) => {
                 <div className="com__content__right__card__content">
                   {/* Deployed Website */}
                   <a
-                    href="YOUR_DEPLOYED_WEBSITE_URL"
+                    href="https://doremovies.netlify.app/"
                     target="_blank"
                     rel="noreferrer"
                     className="com__content__right__card__item--me"
