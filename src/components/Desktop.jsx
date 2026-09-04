@@ -8,10 +8,10 @@ import { Footer } from "./Footer"
 export const Desktop = () => {
   // Track all windows
   const [windows, setWindows] = useState([
-    { id: 1, title: "Resume", isOpen: false },
-    { id: 2, title: "Projects", isOpen: true },
-    { id: 3, title: "Contact", isOpen: false },
-    { id: 4, title: "MP3 Player", isOpen: true },
+    { id: 1, title: "Resume", isOpen: false, x: 0.1, y: 0.05 },
+    { id: 2, title: "Projects", isOpen: true, x: 0.2, y: 0.2 },
+    { id: 3, title: "Contact", isOpen: false, x: 0.5, y: 0.74 },
+    { id: 4, title: "MP3 Player", isOpen: true, x: 0.7, y: 0.05 },
   ]);
   const [focusedWindowId, setFocusedWindowId] = useState(4);
   const [zIndexes, setZIndexes] = useState({});
@@ -76,12 +76,12 @@ export const Desktop = () => {
         onClose={() => closeWindow(windows[0].id)}
         zIndex={zIndexes[windows[0].id] || 100}
         onBringToFront={() => bringToFront(windows[0].id)}
-        x={200}
-        y={0}
+        x={windows[0].x * window.innerWidth}
+        y={windows[0].y * window.innerWidth}
       >
         <iframe
           src="Resume%202026.docx.pdf#toolbar=0"
-          className="w-full max-w-[550px] block"
+          className="w-full block"
           style={{ aspectRatio: "8.5 / 11" }}
         ></iframe>
       </Window>
@@ -92,8 +92,8 @@ export const Desktop = () => {
         onClose={() => closeWindow(windows[1].id)}
         zIndex={zIndexes[windows[1].id] || 100}
         onBringToFront={() => bringToFront(windows[1].id)}
-        x={600}
-        y={200}
+        x={windows[1].x * window.innerWidth}
+        y={windows[1].y * window.innerWidth}
       >
         <MyComputer />
       </Window>
@@ -104,8 +104,8 @@ export const Desktop = () => {
         onClose={() => closeWindow(windows[2].id)}
         zIndex={zIndexes[windows[2].id] || 100}
         onBringToFront={() => bringToFront(windows[2].id)}
-        x={700}
-        y={360}
+        x={windows[2].x * window.innerWidth}
+        y={windows[2].y * window.innerWidth}
       >
         <p> Message me at marialiu0220@gmail.com </p>
         <p> or hit the link below! </p>
@@ -123,8 +123,8 @@ export const Desktop = () => {
         onClose={() => closeWindow(windows[3].id)}
         zIndex={zIndexes[windows[3].id] || 100}
         onBringToFront={() => bringToFront(windows[3].id)}
-        x={900}
-        y={50}
+        x={windows[3].x * window.innerWidth}
+        y={windows[3].y * window.innerWidth}
       >
         <Mp3Player />
       </Window>
