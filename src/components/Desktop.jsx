@@ -108,9 +108,9 @@ export const Desktop = () => {
         y={windows[2].y * window.innerWidth}
       >
         <p> Message me at marialiu0220@gmail.com </p>
-        <p> or hit the link below! </p>
+        <p> or on LinkedIn! </p>
         <a
-          href="https://www.linkedin.com/"
+          href="https://www.linkedin.com/in/maria-liu-1b26261b6/"
           target="_blank"
           rel="noopener noreferrer"
         >
