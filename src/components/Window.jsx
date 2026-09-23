@@ -17,21 +17,21 @@ export const Window = ({
   const windowRef = useRef(null);
 
   // Keep the window fully on-screen, no matter what x/y it was given
-const MOBILE_BREAKPOINT = 600;
-const ICON_RAIL_HEIGHT = 320; // clears the desktop icon column on mobile
+  const MOBILE_BREAKPOINT = 600;
+  const ICON_RAIL_HEIGHT = 320; // clears the desktop icon column on mobile
 
-const clampPosition = useCallback((pos) => {
-  const width = windowRef.current?.offsetWidth ?? 300;
-  const height = windowRef.current?.offsetHeight ?? 200;
-  const isMobile = document.documentElement.clientWidth <= MOBILE_BREAKPOINT;
-  const maxX = Math.max(0, document.documentElement.clientWidth - width);
-  const maxY = Math.max(0, document.documentElement.clientHeight - height);
-  const minY = isMobile ? Math.min(ICON_RAIL_HEIGHT, maxY) : 0;
-  return {
-    x: Math.min(Math.max(pos.x, 0), maxX),
-    y: Math.min(Math.max(pos.y, minY), maxY),
-  };
-}, []);
+  const clampPosition = useCallback((pos) => {
+    const width = windowRef.current?.offsetWidth ?? 300;
+    const height = windowRef.current?.offsetHeight ?? 200;
+    const isMobile = document.documentElement.clientWidth <= MOBILE_BREAKPOINT;
+    const maxX = Math.max(0, document.documentElement.clientWidth - width);
+    const maxY = Math.max(0, document.documentElement.clientHeight - height);
+    const minY = isMobile ? Math.min(ICON_RAIL_HEIGHT, maxY) : 0;
+    return {
+      x: Math.min(Math.max(pos.x, 0), maxX),
+      y: Math.min(Math.max(pos.y, minY), maxY),
+    };
+  }, []);
 
   useEffect(() => {
     setPosition((prev) => clampPosition(prev));
@@ -47,18 +47,23 @@ const clampPosition = useCallback((pos) => {
         clampPosition({
           x: e.clientX - dragOffset.current.x,
           y: e.clientY - dragOffset.current.y,
-        })
+        }),
       );
     },
-    [isDragging, clampPosition]
+    [isDragging, clampPosition],
   );
 
   const onMouseUp = () => setIsDragging(false);
 
   const onMouseDown = (e) => {
+    e.preventDefault();
     e.stopPropagation();
     setIsDragging(true);
-    dragOffset.current = { x: e.clientX - position.x, y: e.clientY - position.y };
+    document.body.style.userSelect = "none";
+    dragOffset.current = {
+      x: e.clientX - position.x,
+      y: e.clientY - position.y,
+    };
     onBringToFront();
   };
 
@@ -68,6 +73,7 @@ const clampPosition = useCallback((pos) => {
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mouseup", onMouseUp);
+      document.body.style.userSelect = "";
     };
   }, [onMouseMove]);
 
@@ -75,7 +81,12 @@ const clampPosition = useCallback((pos) => {
 
   return (
     <div
-      style={{ position: "absolute", top: position.y, left: position.x, zIndex }}
+      style={{
+        position: "absolute",
+        top: position.y,
+        left: position.x,
+        zIndex,
+      }}
       onClick={onBringToFront}
       className="overflow-hidden"
     >
